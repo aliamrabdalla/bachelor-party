@@ -17,22 +17,22 @@
 
 export const SECTION_LAYERS = {
   couple: [
-    { src: null, label: "couple-bg", depth: -3, scale: 7, y: 1.5 },
+    { src: null, label: "couple-bg", depth: -3, scale: 4, y: 0.8 },
     { src: null, label: "couple-mid", depth: -1, scale: 4.5, y: 0.6 },
     { src: null, label: "groom + wife", depth: 0.6, scale: 3, y: 0 },
   ],
   airbnb: [
-    { src: null, label: "airbnb-bg", depth: -3, scale: 7, y: 1.8 },
+    { src: null, label: "airbnb-bg", depth: -3, scale: 4, y: 0.8 },
     { src: "airbnb-front.png", depth: 0, scale: 4, y: 0.2 },
     { src: null, label: "airbnb-foreground", depth: 1.2, scale: 2, y: -0.4 },
   ],
   activities: [
-    { src: null, label: "activities-bg", depth: -3, scale: 7, y: 1.5 },
+    { src: null, label: "activities-bg", depth: -3, scale: 4, y: 0.8 },
     { src: null, label: "activities-mid", depth: -0.5, scale: 4, y: 0.4 },
     { src: null, label: "activity figure", depth: 0.8, scale: 3, y: 0 },
   ],
   packing: [
-    { src: null, label: "packing-bg", depth: -3, scale: 7, y: 1.5 },
+    { src: null, label: "packing-bg", depth: -3, scale: 4, y: 0.8 },
     { src: null, label: "suitcase", depth: 0.4, scale: 3.2, y: 0 },
   ],
 };

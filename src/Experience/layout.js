@@ -8,37 +8,38 @@ import { SECTIONS } from "../config/content.js";
 export const SECTION_COUNT = SECTIONS.length;
 
 export const RING = {
-  cameraRadius: 3.0, // how far the camera orbits from center (smaller = farther
-  // from the outer dioramas = more of each scene fits in frame)
+  cameraRadius: 2.5, // how far the camera orbits from center (smaller = farther
+  // from the outer dioramas = more depth between the camera and each scene)
   cameraHeight: 1.8, // camera eye height
-  sectionRadius: 9, // how far the dioramas sit from center
+  sectionRadius: 13, // how far the dioramas sit from center (pushed back for depth)
   lookHeight: 1.8, // height the camera aims at; equal to cameraHeight gives a level
   // look (no downward tilt), which keeps the framing stable when zooming in
 };
 
-// The enclosing "world" the camera orbits inside — one continuous floor that
-// curves up into a wall and domes over into a ceiling, wrapping the full 360°
-// (see reference/aimee-weis-papercraft-world: every camera stop is a segment of
-// one enclosed round shell, never empty void). `wallRadius` sits comfortably
-// behind the backmost diorama layer (a section's most-negative depth lands near
-// sectionRadius + 3 ≈ 12), so the shell always fills the background.
+// The enclosing "world" the camera orbits inside. It is NOT a smooth gradient
+// dome — it is four flat papercraft alcoves (one per section) butted together
+// into a full circle, like the reference's four seasonal rooms
+// (reference/aimee-weis-papercraft-world). Each alcove is a 90° wedge with its
+// own flat floor, vertical wall, and flat ceiling, all in that section's colors.
+// Where two alcoves meet there is a HARD edge — a crisp dark seam line — never a
+// blend. `wallRadius` sits behind the backmost diorama layer (a section's
+// most-negative depth lands near sectionRadius + 3 ≈ 16), so the wall always
+// fills the background.
 export const WORLD = {
   floorY: -2, // ground level; section figures rest near here
-  wallRadius: 15, // radius of the wall — behind every diorama layer
-  wallTop: 4, // height at which the wall starts curving inward
-  ceilingPeak: 7, // height of the domed ceiling overhead, at center
-  // Colors are assigned in WorldShell as vertex colors so the world reads as a
-  // round room: a warm floor and a cool light ceiling (constant bands) plus a
-  // wall whose hue follows whichever SECTION it's behind (each section's accent),
-  // blended smoothly around the ring. Each band is mixed toward its section's
-  // accent so a section's floor/wall/ceiling feel like one "room".
-  floorBase: "#a98f68", // warm tan — the floor, darkest band
-  ceilingBase: "#e6ecf1", // cool light — the ceiling, lightest band
-  paper: "#f4ecd8", // walls are the accent softened toward this (pastel)
-  wallPaperMix: 0.2, // how far wall color is pulled toward paper (0..1)
-  floorAccentMix: 0.18, // how much the section accent tints the floor
-  ceilingAccentMix: 0.16, // how much the section accent tints the ceiling
-  seamDarken: 0.72, // multiplier at floor↔wall and wall↔ceiling seams
+  ceilingY: 4, // flat ceiling height (room is floorY..ceilingY = 6 units tall)
+  wallRadius: 18, // radius of the cylindrical wall — behind every diorama layer
+  // Each section's accent (from content.js) becomes a flat 3-tone paper palette:
+  // a mid pastel wall, a darker grounded floor, and a pale ceiling. Flat solid
+  // colors (no vertex gradient) are what read as cut paper rather than a glow.
+  paper: "#f4ecd8", // wall = accent pulled toward this (soft pastel)
+  wallPaperMix: 0.22, // how far the wall color is pulled toward paper (0..1)
+  floorBlend: "#4f4130", // floor = accent pulled toward this warm brown (darker base)
+  floorBlendAmt: 0.55,
+  ceilBlend: "#ffffff", // ceiling = accent pulled toward white (pale)
+  ceilBlendAmt: 0.62,
+  seamColor: "#33271c", // the hard divider line between two alcoves
+  seamHalfAngle: 0.006, // half-width (radians) of that seam line
 };
 
 // Angle (radians) for the i-th section around the circle. Section 0 sits at the

@@ -27,7 +27,7 @@ npm run dev      # http://localhost:5173  (add -- --host to expose on your LAN)
 | `npm run lint`    | Run ESLint                                       |
 
 There's no test suite — verify visually: run the dev server, click **Enter**, then
-scroll or use the bottom nav to jump between stops. Zoom with the bottom-right
+scroll or use the top nav to jump between stops. Zoom with the bottom-right
 control.
 
 ## Customizing
