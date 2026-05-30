@@ -12,8 +12,8 @@ export const RING = {
   // from the outer dioramas = more of each scene fits in frame)
   cameraHeight: 1.8, // camera eye height
   sectionRadius: 9, // how far the dioramas sit from center
-  lookHeight: 0.5, // height the camera aims at; below eye height so the look
-  // tilts down and the floor + base of each diorama stay in view
+  lookHeight: 1.8, // height the camera aims at; equal to cameraHeight gives a level
+  // look (no downward tilt), which keeps the framing stable when zooming in
 };
 
 // The enclosing "world" the camera orbits inside — one continuous floor that
