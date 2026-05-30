@@ -31,6 +31,8 @@ export default function SectionPanel() {
         className={`panel ${isOpen ? "is-open" : ""}`}
         style={{ "--accent": accent }}
         onClick={(e) => e.stopPropagation()}
+        onWheel={(e) => e.stopPropagation()}
+        onTouchMove={(e) => e.stopPropagation()}
       >
         <button className="panel-close" onClick={() => setOpenPanel(null)} aria-label="Close">
           ✕

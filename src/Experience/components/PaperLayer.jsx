@@ -7,7 +7,7 @@ import { asset } from "../../config/assets.js";
 // art never stretches. Layers sit at different local Z (`depth`) within their
 // section group, and the real perspective camera turns that into parallax.
 
-function TexturedLayer({ src, depth, scale, x, y }) {
+function TexturedLayer({ src, depth, scale, x, y, rotationY }) {
   const texture = useTexture(asset(src));
 
   const [w, h] = useMemo(() => {
@@ -19,7 +19,7 @@ function TexturedLayer({ src, depth, scale, x, y }) {
   }, [texture, scale]);
 
   return (
-    <mesh position={[x, y, depth]}>
+    <mesh position={[x, y, depth]} rotation={[0, rotationY, 0]}>
       <planeGeometry args={[w, h]} />
       <meshBasicMaterial
         map={texture}
@@ -58,9 +58,9 @@ function PlaceholderLayer({ label, depth, scale, x, y, accent }) {
 }
 
 export default function PaperLayer({ layer, accent }) {
-  const { src, depth = 0, scale = 3, x = 0, y = 0, label = "layer" } = layer;
+  const { src, depth = 0, scale = 3, x = 0, y = 0, rotationY = 0, label = "layer" } = layer;
   return src ? (
-    <TexturedLayer src={src} depth={depth} scale={scale} x={x} y={y} />
+    <TexturedLayer src={src} depth={depth} scale={scale} x={x} y={y} rotationY={rotationY} />
   ) : (
     <PlaceholderLayer label={label} depth={depth} scale={scale} x={x} y={y} accent={accent} />
   );

@@ -5,7 +5,7 @@
 
 // The moment the bachelor party officially begins. Drives the countdown.
 // Format: ISO 8601 with timezone offset. TODO: set the real date/time.
-export const PARTY_START = "2026-08-14T17:00:00-05:00";
+export const PARTY_START = "2026-07-31T15:00:00-04:00";
 
 export const SITE = {
   title: "The Bachelor Party", // TODO: e.g. "Mike's Last Ride"
@@ -31,15 +31,57 @@ export const SECTIONS = [
     key: "airbnb",
     label: "The Airbnb",
     accent: "#3f7cc2",
+    shell: {
+      floor: "#4c6f46",
+    },
     panel: {
-      heading: "Home Base",
-      body: "TODO: Describe the Airbnb — where it is, what makes it great, the hot tub / view / game room, check-in details.",
+      heading: "Home Base in Davison",
+      body: "Check in July 31 at 3:00 PM and settle into the Davison home base through August 2 at 10:00 AM. The pond is catch-and-release, fishing poles are provided, swimming is at your own risk, and the drive is about one hour from Birmingham/Southfield.",
       facts: [
-        "TODO: Address / city",
-        "TODO: Check-in time",
-        "TODO: Wifi / door code",
+        "4353 North Irish Road, Davison, MI 48423",
+        "Check-in: July 31, 2026 at 3:00 PM",
+        "Checkout: August 2, 2026 at 10:00 AM",
+        "Quiet hours: 11:00 PM-7:00 AM",
+        "Pond: catch-and-release fishing; poles provided; swim at your own risk",
+        "Before checkout: towels to laundry, trash to the garage bin",
       ],
     },
+    sceneNotes: [
+      {
+        title: "Arrive",
+        body: "4353 North Irish Road, Davison, MI 48423",
+        facts: [
+          "Check-in: July 31, 2026 at 3:00 PM",
+          "Checkout: August 2, 2026 at 10:00 AM",
+          "About one hour from Birmingham/Southfield",
+        ],
+        x: -5.4,
+        y: 2.02,
+        depth: -1.35,
+        width: 260,
+      },
+      {
+        title: "Pond",
+        body: "Catch-and-release fishing by the back side of the house.",
+        facts: ["Fishing poles provided", "Swim at your own risk"],
+        x: 4.85,
+        y: 2.04,
+        depth: -1.35,
+        width: 250,
+      },
+      {
+        title: "House Rhythm",
+        body: "Quiet hours are 11:00 PM-7:00 AM.",
+        facts: [
+          "Put dirty towels in the laundry room or washer",
+          "Throw trash in the garage garbage bin",
+        ],
+        x: 0.2,
+        y: 2.92,
+        depth: -2.2,
+        width: 270,
+      },
+    ],
   },
   {
     key: "activities",

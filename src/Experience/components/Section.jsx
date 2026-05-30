@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import PaperLayer from "./PaperLayer.jsx";
+import SceneNote from "./SceneNote.jsx";
 import { SECTION_LAYERS } from "../../config/sections.js";
 import { sectionPosition, sectionFacingRotation } from "../layout.js";
 import { useExperienceStore } from "../../store/useExperienceStore";
@@ -25,6 +26,9 @@ export default function Section({ section, index }) {
       <Suspense fallback={null}>
         {layers.map((layer, i) => (
           <PaperLayer key={i} layer={layer} accent={section.accent} />
+        ))}
+        {section.sceneNotes?.map((note, i) => (
+          <SceneNote key={`note-${i}`} note={note} accent={section.accent} />
         ))}
       </Suspense>
     </group>

@@ -1,0 +1,52 @@
+.scene-note {
+  padding: 14px 16px;
+  background: rgba(244, 236, 216, 0.9);
+  color: var(--ink);
+  filter: drop-shadow(0 8px 12px rgba(31, 22, 15, 0.28));
+  clip-path: polygon(2% 5%, 98% 1%, 96% 96%, 3% 99%);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  user-select: none;
+}
+
+.scene-note-title {
+  margin-bottom: 6px;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.scene-note-body {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.scene-note-facts {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.scene-note-facts li {
+  position: relative;
+  padding-left: 12px;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.scene-note-facts li + li {
+  margin-top: 4px;
+}
+
+.scene-note-facts li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  background: var(--accent);
+  border-radius: 999px;
+}

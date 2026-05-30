@@ -70,7 +70,7 @@ export default function WorldShell() {
         floorGeo: sector(a0, a1, wallRadius, floorY),
         ceilGeo: sector(a0, a1, wallRadius, ceilingY),
         wall: hex(accent.clone().lerp(paper, WORLD.wallPaperMix)),
-        floor: hex(accent.clone().lerp(floorBlend, WORLD.floorBlendAmt)),
+        floor: s.shell?.floor ?? hex(accent.clone().lerp(floorBlend, WORLD.floorBlendAmt)),
         ceil: hex(accent.clone().lerp(ceilBlend, WORLD.ceilBlendAmt)),
       };
     });

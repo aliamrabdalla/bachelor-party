@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import CustomCamera from "./components/CustomCamera.jsx";
 import WorldShell from "./components/WorldShell.jsx";
 import Section from "./components/Section.jsx";
+import MovingGroom from "./components/MovingGroom.jsx";
 import { SECTIONS } from "../config/content.js";
 import { useExperienceStore } from "../store/useExperienceStore";
 
@@ -21,6 +22,7 @@ export default function Scene() {
       {SECTIONS.map((section, i) => (
         <Section key={section.key} section={section} index={i} />
       ))}
+      <MovingGroom />
       <SceneReadySentinel />
     </>
   );

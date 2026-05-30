@@ -16,6 +16,19 @@ export default function Experience() {
   const openPanel = useExperienceStore((s) => s.openPanel);
   const [lenisRef, setLenisRef] = useState(null);
 
+  // Start every visit at the groom-and-bride quarter instead of restoring an
+  // old scroll position from the browser.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const previousRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+    setScrollProgress(0);
+    return () => {
+      window.history.scrollRestoration = previousRestoration;
+    };
+  }, [setScrollProgress]);
+
   // Lock scrolling until the user enters, and while a panel is open.
   useEffect(() => {
     const lenis = lenisRef?.lenis;
