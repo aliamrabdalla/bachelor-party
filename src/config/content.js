@@ -1,31 +1,60 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// EDIT ME. This is the single source of truth for all text/content on the site.
-// Everything below with a TODO is a placeholder — swap in the real details.
-// ─────────────────────────────────────────────────────────────────────────────
+// Single source of truth for visitor-facing content and the countdown date.
 
-// The moment the bachelor party officially begins. Drives the countdown.
-// Format: ISO 8601 with timezone offset. TODO: set the real date/time.
 export const PARTY_START = "2026-07-31T15:00:00-04:00";
 
 export const SITE = {
-  title: "The Bachelor Party", // TODO: e.g. "Mike's Last Ride"
-  subtitle: "Scroll to wander the weekend", // shown on the loading screen
+  title: "Youssef's Bachelor Weekend",
+  subtitle: "Scroll to wander the weekend",
 };
 
-// The four stops on the infinite loop, in scroll order. The `key` ties a section
-// to its visual layers in src/config/sections.js. Reorder this array to reorder
-// the journey (also update sections.js to match).
 export const SECTIONS = [
   {
     key: "couple",
     label: "The Groom & His Bride",
-    accent: "#c2453f", // paper/info-panel accent color for this stop
-    panel: {
-      heading: "The Groom & His Bride", // TODO
-      body: "TODO: A few words about the groom and his wife — how they met, the wedding, why we're all here to send him off in style.",
-      // Optional bullet facts. Delete or add freely.
-      facts: ["TODO: Groom's name", "TODO: Wife's name", "TODO: Wedding date"],
+    accent: "#c2453f",
+    shell: {
+      floor: "#8b3d32",
     },
+    panel: {
+      heading: "Youssef & Gabi",
+      body: "The weekend starts with the reason everyone is gathering: celebrating Youssef, Gabi, and the next chapter. This stop keeps the story simple and personal, with memory cards ready for the final little details.",
+      facts: [
+        "Groom: Youssef",
+        "Bride: Gabi",
+        "Wedding date: add final date",
+        "Memory card: how they met",
+        "Memory card: one shared interest",
+      ],
+    },
+    sceneMarkers: [
+      {
+        title: "Youssef + Gabi",
+        lines: ["The reason for the weekend"],
+        x: -0.1,
+        y: 1.02,
+        depth: -1.35,
+        width: 116,
+        distanceFactor: 4.5,
+      },
+      {
+        title: "Wedding Date",
+        lines: ["Add final date here"],
+        x: -0.15,
+        y: 0.18,
+        depth: -1.2,
+        width: 96,
+        distanceFactor: 4.3,
+      },
+      {
+        title: "Memory Cards",
+        lines: ["How they met", "Shared interest"],
+        x: -2.82,
+        y: -0.75,
+        depth: 1,
+        width: 98,
+        distanceFactor: 4.3,
+      },
+    ],
   },
   {
     key: "airbnb",
@@ -93,31 +122,113 @@ export const SECTIONS = [
     key: "activities",
     label: "The Weekend",
     accent: "#e0a43b",
+    shell: {
+      floor: "#6c7f3e",
+    },
     panel: {
-      heading: "What We're Doing",
-      body: "TODO: Overview of the weekend's plans.",
-      // For activities a schedule list reads better than free text.
+      heading: "Boat, Brisket, Games, Fire",
+      body: "Saturday is built around an outdoors-heavy bachelor-party day: Holloway Reservoir in the morning, a three-place brisket tasting, lawn-game field day, and a relaxed fireplace hangout at night.",
       facts: [
-        "TODO: Fri night — ____",
-        "TODO: Sat day — ____",
-        "TODO: Sat night — ____",
-        "TODO: Sun — ____",
+        "Boat morning: Holloway Reservoir",
+        "Food: three-place brisket tasting",
+        "Competition: seven-person ranking and judging",
+        "Field day: Spikeball, cones, volleyball, and open grass",
+        "Night: fireplace hangout with chairs and string lights",
       ],
     },
+    sceneMarkers: [
+      {
+        title: "Holloway Reservoir",
+        lines: ["Boat morning", "Water gear up front"],
+        x: -5,
+        y: -0.25,
+        depth: 0.82,
+        width: 108,
+        distanceFactor: 4.45,
+      },
+      {
+        title: "Brisket",
+        lines: ["3 trays", "Rank the favorites"],
+        x: 1.55,
+        y: 0.18,
+        depth: -0.32,
+        width: 92,
+        distanceFactor: 4.35,
+      },
+      {
+        title: "Field Day",
+        lines: ["Spikeball", "Volleyball", "Cones + flags"],
+        x: 3.88,
+        y: -0.28,
+        depth: -0.2,
+        width: 90,
+        distanceFactor: 4.25,
+      },
+      {
+        title: "Fireplace",
+        lines: ["End-of-day hangout"],
+        x: 6,
+        y: -0.18,
+        depth: -0.84,
+        width: 92,
+        distanceFactor: 4.35,
+      },
+    ],
   },
   {
     key: "packing",
     label: "Get Ready",
     accent: "#4c9e5a",
+    shell: {
+      floor: "#4b6f41",
+    },
     panel: {
-      heading: "Pack & Prep",
-      body: "TODO: Anything everyone needs to know before they arrive.",
+      heading: "Pack for Water, Grass, Sun, and Fire",
+      body: "Bring the weekend basics, then add the gear that matches the plan: boat clothes, sun protection, field-day shoes, and something warm for the fireplace at night.",
       facts: [
-        "TODO: Swimsuit",
-        "TODO: Cash for ____",
-        "TODO: ID",
-        "TODO: Good shoes",
+        "Boat gear: swimsuit or wet clothes, towel, sunscreen, sunglasses, hat, water bottle, sandals or water shoes",
+        "Field day: athletic clothes, sneakers, extra socks, change of shirt, bug spray",
+        "Night gear: hoodie, light jacket, comfortable pants, optional blanket or camp chair",
+        "Weekend basics: casual clothes, sleepwear, toiletries, phone charger, wallet, medications",
       ],
     },
+    sceneMarkers: [
+      {
+        title: "Boat Gear",
+        lines: ["swimsuit", "towel", "sunscreen"],
+        x: -5.28,
+        y: 0.1,
+        depth: -0.88,
+        width: 86,
+        distanceFactor: 4.3,
+      },
+      {
+        title: "Field Day",
+        lines: ["sneakers", "extra socks", "bug spray"],
+        x: 3.02,
+        y: -0.02,
+        depth: -0.54,
+        width: 86,
+        distanceFactor: 4.3,
+      },
+      {
+        title: "Night Gear",
+        lines: ["hoodie", "jacket", "blanket"],
+        x: 5.05,
+        y: 0.32,
+        depth: -1.82,
+        width: 84,
+        distanceFactor: 4.3,
+      },
+      {
+        title: "Check-In",
+        lines: ["July 31", "3:00 PM"],
+        x: -2.22,
+        y: 0.14,
+        depth: 0.82,
+        width: 78,
+        distanceFactor: 4.15,
+      },
+    ],
   },
 ];

@@ -7,9 +7,12 @@ const PERSON_Y = -2 + PERSON_SCALE / 2;
 
 export const SECTION_LAYERS = {
   couple: [
-    { src: null, label: "couple-bg", depth: -3, scale: 4.3, y: 0.75 },
-    { src: null, label: "couple-mid", depth: -1, scale: 4.8, y: 0.5 },
-    { src: "person-bride-gabi.png", depth: 0.42, scale: PERSON_SCALE, x: 0.74, y: PERSON_Y },
+    { src: "couple-bg-garland.png", depth: -3.15, scale: 4.05, x: 0, y: 1.25 },
+    { src: "airbnb-paper-clouds.png", depth: -3.35, scale: 1.2, x: -5.4, y: 2.55, rotationY: 0.18 },
+    { src: "airbnb-paper-clouds.png", depth: -3.35, scale: 1.05, x: 5.3, y: 2.45, rotationY: -0.18, flipX: true },
+    { src: "person-bride-gabi.png", depth: 0.34, scale: PERSON_SCALE, x: 1.04, y: PERSON_Y },
+    { src: "couple-foreground-props.png", depth: 0.86, scale: 2.05, x: -2.8, y: -1.25, rotationY: 0.1 },
+    { src: "airbnb-grass-cluster-a.png", depth: 1.1, scale: 0.72, x: 5.4, y: -1.72, rotationY: -0.18, flipX: true },
   ],
 
   airbnb: [
@@ -49,13 +52,34 @@ export const SECTION_LAYERS = {
   ],
 
   activities: [
-    { src: null, label: "activities-bg", depth: -3, scale: 4.2, y: 0.75 },
-    { src: null, label: "activities-mid", depth: -0.5, scale: 4.2, y: 0.35 },
-    { src: null, label: "activity figure", depth: 0.8, scale: 3.1, y: 0 },
+    { src: "airbnb-paper-clouds.png", depth: -3.55, scale: 1.45, x: -5.2, y: 2.5, rotationY: 0.22 },
+    { src: "airbnb-paper-clouds.png", depth: -3.58, scale: 1.25, x: 0.3, y: 2.65, flipX: true },
+    { src: "airbnb-tree-cluster-a.png", depth: -3.22, scale: 4.05, x: -6.3, y: 0.12, rotationY: 0.24 },
+    { src: "airbnb-tree-cluster-a.png", depth: -3.16, scale: 4.25, x: -1.9, y: 0.1, flipX: true },
+    { src: "airbnb-tree-cluster-a.png", depth: -3.12, scale: 4.0, x: 3.1, y: 0.1, rotationY: -0.12 },
+    { src: "airbnb-tree-cluster-a.png", depth: -3.2, scale: 3.75, x: 6.5, y: 0.05, rotationY: -0.25, flipX: true },
+    { src: "activities-shoreline-gear.png", depth: -1.7, scale: 2.45, x: -1.9, y: -1.14, rotationY: 0.08 },
+    { src: "activities-fireplace.png", depth: -1.05, scale: 2.2, x: 6.0, y: -0.9, rotationY: -0.2 },
+    { src: "activities-brisket-games.png", depth: -0.62, scale: 3.28, x: 2.65, y: -0.58, rotationY: -0.12 },
+    { src: "activities-reservoir-boat.png", depth: 0.52, scale: 3.15, x: -4.78, y: -0.93, rotationY: 0.2 },
+    { src: "person-guest-ali.png", depth: 0.36, scale: 1.58, x: -5.9, y: -1.21 },
+    { src: "person-guest-james.png", depth: 0.42, scale: 1.58, x: -4.15, y: -1.21 },
+    { src: "person-guest-john.png", depth: 0.48, scale: 1.58, x: 1.82, y: -1.21 },
+    { src: "person-guest-moose.png", depth: 0.58, scale: 1.58, x: 3.45, y: -1.21 },
+    { src: "person-guest-moustafa.png", depth: 0.64, scale: 1.58, x: 5.55, y: -1.21 },
+    { src: "airbnb-grass-cluster-a.png", depth: 1.12, scale: 0.72, x: 0.0, y: -1.73 },
   ],
 
   packing: [
-    { src: null, label: "packing-bg", depth: -3, scale: 4.2, y: 0.75 },
-    { src: null, label: "suitcase", depth: 0.4, scale: 3.3, y: 0 },
+    { src: "airbnb-paper-clouds.png", depth: -3.42, scale: 1.3, x: -4.9, y: 2.52, rotationY: 0.16 },
+    { src: "airbnb-paper-clouds.png", depth: -3.46, scale: 1.15, x: 4.9, y: 2.45, rotationY: -0.16, flipX: true },
+    { src: "airbnb-grass-cluster-a.png", depth: -2.5, scale: 1.05, x: -6.5, y: -1.62, rotationY: 0.22 },
+    { src: "airbnb-grass-cluster-a.png", depth: -2.45, scale: 0.98, x: 6.3, y: -1.62, rotationY: -0.22, flipX: true },
+    { src: "packing-night-weekend-gear.png", depth: -2.02, scale: 2.95, x: 5.05, y: -0.58, rotationY: -0.2 },
+    { src: "packing-boat-gear.png", depth: -1.08, scale: 2.55, x: -5.28, y: -0.62, rotationY: 0.18 },
+    { src: "packing-field-gear.png", depth: -0.72, scale: 2.22, x: 3.05, y: -0.76, rotationY: -0.12 },
+    { src: "packing-duffel-checklist.png", depth: 0.58, scale: 3.32, x: -1.08, y: -0.7, rotationY: 0.04 },
+    { src: "airbnb-grass-cluster-a.png", depth: 1.08, scale: 0.84, x: -6.8, y: -1.71, rotationY: 0.2 },
+    { src: "airbnb-grass-cluster-a.png", depth: 1.14, scale: 0.8, x: 6.7, y: -1.71, rotationY: -0.2, flipX: true },
   ],
 };
