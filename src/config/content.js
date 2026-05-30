@@ -18,7 +18,7 @@ export const SITE = {
 export const SECTIONS = [
   {
     key: "couple",
-    label: "The Groom & His Wife", // TODO
+    label: "The Groom & His Bride",
     accent: "#c2453f", // paper/info-panel accent color for this stop
     panel: {
       heading: "The Groom & His Bride", // TODO

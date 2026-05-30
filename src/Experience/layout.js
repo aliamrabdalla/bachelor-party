@@ -8,10 +8,12 @@ import { SECTIONS } from "../config/content.js";
 export const SECTION_COUNT = SECTIONS.length;
 
 export const RING = {
-  cameraRadius: 4.4, // how far the camera orbits from center
-  cameraHeight: 1.5, // camera eye height
+  cameraRadius: 3.0, // how far the camera orbits from center (smaller = farther
+  // from the outer dioramas = more of each scene fits in frame)
+  cameraHeight: 1.8, // camera eye height
   sectionRadius: 9, // how far the dioramas sit from center
-  lookHeight: 1.6, // height of the point the camera aims at
+  lookHeight: 0.8, // height the camera aims at; below eye height so the look
+  // tilts down and the floor + base of each diorama stay in view
 };
 
 // The enclosing "world" the camera orbits inside — one continuous floor that

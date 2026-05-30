@@ -2,6 +2,7 @@ import Experience from "./Experience/Experience.jsx";
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen.jsx";
 import SectionPanel from "./components/SectionPanel/SectionPanel.jsx";
 import SectionNav from "./components/SectionNav/SectionNav.jsx";
+import ZoomSlider from "./components/ZoomSlider/ZoomSlider.jsx";
 
 export default function App() {
   return (
@@ -9,6 +10,7 @@ export default function App() {
       <LoadingScreen />
       <Experience />
       <SectionNav />
+      <ZoomSlider />
       <SectionPanel />
     </>
   );

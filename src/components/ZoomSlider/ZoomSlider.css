@@ -1,0 +1,79 @@
+.zoom-slider {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: rgba(244, 236, 216, 0.85);
+  backdrop-filter: blur(8px);
+  border-radius: 999px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.zoom-slider.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+}
+
+.zoom-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: rgba(43, 33, 24, 0.08);
+  border-radius: 50%;
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s ease;
+}
+.zoom-btn:hover {
+  background: rgba(43, 33, 24, 0.18);
+}
+
+.zoom-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 120px;
+  height: 4px;
+  background: rgba(43, 33, 24, 0.25);
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+}
+.zoom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--ink);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.zoom-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--ink);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* On small screens shrink the track so it doesn't crowd the nav. */
+@media (max-width: 640px) {
+  .zoom-slider {
+    right: 14px;
+    bottom: 80px;
+  }
+  .zoom-range {
+    width: 80px;
+  }
+}

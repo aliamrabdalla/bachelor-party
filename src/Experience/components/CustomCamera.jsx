@@ -5,6 +5,7 @@ import { PerspectiveCamera } from "@react-three/drei";
 import { useCurveProgressStore } from "../../store/useCurveProgressStore";
 import { useResponsiveStore } from "../../store/useResponsiveStore";
 import { useExperienceStore } from "../../store/useExperienceStore";
+import { useCameraStore } from "../../store/useCameraStore";
 
 // Drives the camera around the orbit. A group rides the path curve and aims at
 // the lookAt curve; the inner camera adds a small pointer-driven parallax so the
@@ -60,11 +61,18 @@ const CustomCamera = () => {
       Math.PI - currentPointer.current.x * 0.06,
       0,
     );
+
+    // Apply the user's zoom (from the ZoomSlider) to the perspective camera.
+    const zoom = useCameraStore.getState().zoom;
+    if (camRef.current.zoom !== zoom) {
+      camRef.current.zoom = zoom;
+      camRef.current.updateProjectionMatrix();
+    }
   });
 
   return (
     <group ref={groupRef}>
-      <PerspectiveCamera makeDefault fov={50} near={0.1} far={100} ref={camRef} />
+      <PerspectiveCamera makeDefault fov={55} near={0.1} far={100} ref={camRef} />
     </group>
   );
 };

@@ -1,62 +1,60 @@
-# bachelor-party
+# Bachelor Party
 
-An infinite-scroll **papercraft** website for a bachelor party. You scroll
-(forever, looping) and a camera glides around the inside of a circular world,
-visiting four dioramas in order:
+An infinite-scroll **papercraft** website for a bachelor party. Scroll (forever,
+looping) and the camera glides around the inside of one continuous round world,
+visiting four dioramas:
 
-**The Groom & His Wife → The Airbnb → The Weekend (activities) → Get Ready (packing + countdown)**
+**The Groom & His Bride → The Airbnb → The Weekend → Get Ready (with a countdown)**
 
-It's a **2.5D** take on a 3D idea: instead of 3D models, each diorama is built
-from flat transparent-PNG cutouts placed on planes at different depths inside a
-real Three.js / WebGL scene. The moving perspective camera passing those layered
-planes is what creates the papercraft parallax. The four dioramas sit against one
-continuous, enclosed floor→wall→ceiling shell, so the world reads as a single
-seamless round room.
+It's **2.5D**: each diorama is built from flat, transparent-PNG cutouts placed at
+different depths inside a real Three.js / WebGL scene. As the perspective camera
+moves past those layered planes, the offset between them creates the papercraft
+parallax. The dioramas sit against a single enclosed floor → wall → ceiling shell,
+so the world reads as one seamless room.
 
-## Develop
+## Getting started
 
 ```bash
-npm install     # install deps
-npm run dev     # dev server at http://localhost:5173 (use -- --host for LAN)
-npm run build   # production build to dist/  (base = /bachelor-party/)
-npm run preview # serve the production build
-npm run lint    # eslint
+npm install
+npm run dev      # http://localhost:5173  (add -- --host to expose on your LAN)
 ```
 
-There's no test suite — verify visually by running `npm run dev`, clicking
-**Enter**, and scrolling (or using the bottom nav to jump between stops).
+| Script            | Does                                            |
+| ----------------- | ----------------------------------------------- |
+| `npm run dev`     | Start the dev server with hot reload            |
+| `npm run build`   | Production build to `dist/`                      |
+| `npm run preview` | Serve the production build locally              |
+| `npm run lint`    | Run ESLint                                       |
 
-## What to edit
+There's no test suite — verify visually: run the dev server, click **Enter**, then
+scroll or use the bottom nav to jump between stops. Zoom with the bottom-right
+control.
 
-You mostly touch **two config files**; the engine reads from them.
+## Customizing
 
-| You want to change…                         | Edit                       |
-| ------------------------------------------- | -------------------------- |
-| Any visitor-facing text, the countdown date | `src/config/content.js`    |
-| Which PNG cutouts appear in each diorama     | `src/config/sections.js`   |
+Most changes live in two files:
 
-- **Art:** drop transparent PNGs in `public/2d-assets/` and reference them by
-  filename in `sections.js`. This is the single place art lives. A layer with
-  `src: null` renders a labelled placeholder card, so the scene always runs even
-  before art exists.
-- **Layer depth:** more negative `depth` = further back (less parallax); positive
-  = toward the camera (foreground). `scale` is the plane's world height.
-- **Countdown:** set `PARTY_START` (ISO 8601 with timezone) in `content.js`.
+- **`src/config/content.js`** — all visitor-facing text and the countdown date
+  (`PARTY_START`).
+- **`src/config/sections.js`** — which PNG cutouts appear in each diorama, and
+  their depth/scale/position.
 
-For the bigger picture — how the camera, curves, layout, and world shell fit
-together — see [`CLAUDE.md`](./CLAUDE.md).
+Art goes in **`public/2d-assets/`** as transparent PNGs, referenced by filename in
+`sections.js`. A layer with `src: null` renders a labelled placeholder, so the
+scene always runs even before art exists. More negative `depth` sits further back
+(less parallax); positive comes toward the camera.
 
-## Design reference
+## Tech
 
-This is modeled on Andrew Woan's
-[`aimee-weis-papercraft-world`](https://github.com/andrewwoan/aimee-weis-papercraft-world).
-A local clone lives at `reference/aimee-weis-papercraft-world/` (git-ignored) and
-is the source of truth for inspiration and high-level design. We deliberately
-diverge on the tech: **WebGL** (not WebGPU) for phone/browser compatibility, and
-flat PNG layers instead of a Blender model pipeline.
+React + Vite, React Three Fiber / Three.js (WebGL), Zustand, GSAP, and Lenis for
+the infinite smooth scroll.
 
 ## Deploy
 
-Pushing to `main` builds and publishes to **GitHub Pages** via
-`.github/workflows/deploy.yml`. `vite.config.js` sets `base` to `/bachelor-party/`
-for builds, so the repo name and that base must stay in sync.
+Pushing to `main` builds and publishes to GitHub Pages via
+`.github/workflows/deploy.yml`.
+
+## Credits
+
+Inspired by Andrew Woan's
+[Aimee Wei papercraft world](https://github.com/andrewwoan/aimee-weis-papercraft-world).
