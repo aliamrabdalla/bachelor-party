@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { SECTIONS } from "../../config/content.js";
 import { useExperienceStore } from "../../store/useExperienceStore";
-import Countdown from "../Countdown/Countdown.jsx";
 import "./SectionPanel.css";
 
 // Slide-over panel for the currently opened section. Reads the open key from the
-// store; the packing section additionally shows the live countdown.
+// store; Lenis is told to leave this panel's native scrolling alone.
 export default function SectionPanel() {
   const openPanel = useExperienceStore((s) => s.openPanel);
   const setOpenPanel = useExperienceStore((s) => s.setOpenPanel);
@@ -30,8 +29,13 @@ export default function SectionPanel() {
       <aside
         className={`panel ${isOpen ? "is-open" : ""}`}
         style={{ "--accent": accent }}
+        data-lenis-prevent
+        data-lenis-prevent-wheel
+        data-lenis-prevent-touch
         onClick={(e) => e.stopPropagation()}
+        onWheelCapture={(e) => e.stopPropagation()}
         onWheel={(e) => e.stopPropagation()}
+        onTouchMoveCapture={(e) => e.stopPropagation()}
         onTouchMove={(e) => e.stopPropagation()}
       >
         <button className="panel-close" onClick={() => setOpenPanel(null)} aria-label="Close">
@@ -50,12 +54,6 @@ export default function SectionPanel() {
           </ul>
         )}
 
-        {section.key === "packing" && (
-          <>
-            <div className="panel-countdown-label">The countdown</div>
-            <Countdown />
-          </>
-        )}
       </aside>
     </div>
   );

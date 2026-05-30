@@ -10,10 +10,9 @@ export const SECTION_COUNT = SECTIONS.length;
 export const RING = {
   cameraRadius: 2.5, // how far the camera orbits from center (smaller = farther
   // from the outer dioramas = more depth between the camera and each scene)
-  cameraHeight: 1.8, // camera eye height
+  cameraHeight: 2.05, // camera eye height
   sectionRadius: 13, // how far the dioramas sit from center (pushed back for depth)
-  lookHeight: 1.8, // height the camera aims at; equal to cameraHeight gives a level
-  // look (no downward tilt), which keeps the framing stable when zooming in
+  lookHeight: 0.85, // lower aim gives a slight downward tilt and shows the floor seams
 };
 
 // The enclosing "world" the camera orbits inside. It is NOT a smooth gradient
@@ -39,7 +38,7 @@ export const WORLD = {
   ceilBlend: "#ffffff", // ceiling = accent pulled toward white (pale)
   ceilBlendAmt: 0.62,
   seamColor: "#33271c", // the hard divider line between two alcoves
-  seamHalfAngle: 0.006, // half-width (radians) of that seam line
+  seamHalfAngle: 0.0075, // half-width (radians) of that seam line
 };
 
 // Angle (radians) for the i-th section around the circle. Section 0 sits at the

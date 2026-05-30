@@ -1,0 +1,97 @@
+.countdown-ribbon {
+  position: fixed;
+  top: 84px;
+  left: 50%;
+  z-index: 19;
+  transform: translateX(-50%);
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.countdown-ribbon.is-hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-12px);
+}
+
+.countdown-ribbon-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: calc(100vw - 28px);
+  padding: 7px 10px;
+  border: 1px dashed rgba(51, 39, 28, 0.3);
+  border-left: 5px solid var(--accent);
+  border-bottom: 3px solid var(--section-floor);
+  background-color: rgba(244, 236, 216, 0.88);
+  background-image:
+    radial-gradient(circle at 14% 20%, rgba(255, 255, 255, 0.32) 0 1px, transparent 1.6px),
+    repeating-linear-gradient(88deg, rgba(51, 39, 28, 0.045) 0 1px, transparent 1px 10px);
+  box-shadow: 0 8px 24px rgba(31, 22, 15, 0.22);
+  clip-path: polygon(1% 8%, 99% 2%, 98% 94%, 2% 98%);
+  color: var(--ink);
+}
+
+.countdown-ribbon-kicker {
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.countdown-ribbon-units {
+  display: flex;
+  gap: 6px;
+}
+
+.countdown-ribbon-unit {
+  display: grid;
+  min-width: 42px;
+  padding: 5px 6px;
+  border: 1px solid rgba(51, 39, 28, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.28);
+  text-align: center;
+}
+
+.countdown-ribbon-value {
+  font-size: 17px;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.countdown-ribbon-label {
+  margin-top: 2px;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.countdown-ribbon-live {
+  font-size: 13px;
+  font-weight: 900;
+}
+
+@media (max-width: 640px) {
+  .countdown-ribbon {
+    top: 78px;
+  }
+
+  .countdown-ribbon-inner {
+    gap: 7px;
+    padding: 6px 8px;
+  }
+
+  .countdown-ribbon-kicker {
+    display: none;
+  }
+
+  .countdown-ribbon-unit {
+    min-width: 38px;
+    padding: 5px;
+  }
+}
