@@ -1,0 +1,25 @@
+import { useEffect } from "react";
+import CustomCamera from "./components/CustomCamera.jsx";
+import Section from "./components/Section.jsx";
+import { SECTIONS } from "../config/content.js";
+import { useExperienceStore } from "../store/useExperienceStore";
+
+// Signals that the scene mounted so the loading screen can hand off.
+const SceneReadySentinel = () => {
+  const setIsSceneReady = useExperienceStore((s) => s.setIsSceneReady);
+  useEffect(() => setIsSceneReady(true), [setIsSceneReady]);
+  return null;
+};
+
+export default function Scene() {
+  return (
+    <>
+      <CustomCamera />
+      <ambientLight intensity={1} />
+      {SECTIONS.map((section, i) => (
+        <Section key={section.key} section={section} index={i} />
+      ))}
+      <SceneReadySentinel />
+    </>
+  );
+}

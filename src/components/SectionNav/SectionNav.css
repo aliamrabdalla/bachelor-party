@@ -1,0 +1,63 @@
+.section-nav {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  gap: 6px;
+  padding: 8px;
+  background: rgba(244, 236, 216, 0.85);
+  backdrop-filter: blur(8px);
+  border-radius: 999px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.section-nav.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(20px);
+}
+
+.section-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: none;
+  background: transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.25s ease;
+}
+.section-nav-item:hover {
+  background: rgba(43, 33, 24, 0.08);
+}
+.section-nav-item.is-active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.section-nav-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.section-nav-item.is-active .section-nav-dot {
+  background: #fff;
+}
+
+/* On small screens, collapse to dots only to save room. */
+@media (max-width: 640px) {
+  .section-nav-label {
+    display: none;
+  }
+  .section-nav-item {
+    padding: 10px;
+  }
+}
