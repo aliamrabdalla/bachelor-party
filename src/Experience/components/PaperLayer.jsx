@@ -37,7 +37,7 @@ function PlaceholderLayer({ label, depth, scale, x, y, accent }) {
     <group position={[x, y, depth]}>
       <mesh>
         <planeGeometry args={[scale * 0.9, scale]} />
-        <meshBasicMaterial color={accent} transparent opacity={0.55} side={THREE.DoubleSide} />
+        <meshBasicMaterial color={accent} transparent opacity={0.4} side={THREE.DoubleSide} />
       </mesh>
       <Html center distanceFactor={10} pointerEvents="none">
         <div

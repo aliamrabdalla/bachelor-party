@@ -12,7 +12,7 @@ export const RING = {
   // from the outer dioramas = more of each scene fits in frame)
   cameraHeight: 1.8, // camera eye height
   sectionRadius: 9, // how far the dioramas sit from center
-  lookHeight: 0.8, // height the camera aims at; below eye height so the look
+  lookHeight: 0.5, // height the camera aims at; below eye height so the look
   // tilts down and the floor + base of each diorama stay in view
 };
 
@@ -25,13 +25,20 @@ export const RING = {
 export const WORLD = {
   floorY: -2, // ground level; section figures rest near here
   wallRadius: 15, // radius of the wall — behind every diorama layer
-  wallTop: 6, // height at which the wall starts curving inward
-  ceilingPeak: 11, // height of the domed ceiling overhead, at center
-  // Flat (unlit) papercraft tones; WorldShell blends them vertically as a
-  // floor → wall → ceiling gradient via vertex colors.
-  floorColor: "#e7d9bd",
-  wallColor: "#cdbfa6",
-  ceilingColor: "#bcc8d6",
+  wallTop: 4, // height at which the wall starts curving inward
+  ceilingPeak: 7, // height of the domed ceiling overhead, at center
+  // Colors are assigned in WorldShell as vertex colors so the world reads as a
+  // round room: a warm floor and a cool light ceiling (constant bands) plus a
+  // wall whose hue follows whichever SECTION it's behind (each section's accent),
+  // blended smoothly around the ring. Each band is mixed toward its section's
+  // accent so a section's floor/wall/ceiling feel like one "room".
+  floorBase: "#a98f68", // warm tan — the floor, darkest band
+  ceilingBase: "#e6ecf1", // cool light — the ceiling, lightest band
+  paper: "#f4ecd8", // walls are the accent softened toward this (pastel)
+  wallPaperMix: 0.2, // how far wall color is pulled toward paper (0..1)
+  floorAccentMix: 0.18, // how much the section accent tints the floor
+  ceilingAccentMix: 0.16, // how much the section accent tints the ceiling
+  seamDarken: 0.72, // multiplier at floor↔wall and wall↔ceiling seams
 };
 
 // Angle (radians) for the i-th section around the circle. Section 0 sits at the

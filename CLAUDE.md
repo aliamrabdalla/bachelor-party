@@ -59,11 +59,13 @@ enclosed world: a single `LatheGeometry` surface (a 2D profile spun 360° around
 that is floor → wall → domed ceiling in one seamless piece, so there is never
 empty void behind or between dioramas (this mirrors the reference, where every
 camera stop is a segment of one enclosed round shell). It's unlit `meshBasic` with
-a vertical floor→wall→ceiling vertex-color gradient to match the flat papercraft
-look. Dimensions/tones come from `WORLD` in `layout.js`; `wallRadius` is set to
-sit behind the backmost diorama layer. Per-section wall *tinting* (color identity
-per stop, like the reference's seasons) is intended future polish, keyed off
-vertex angle.
+vertex colors to match the flat papercraft look. It reads as a round *room*: a
+warm floor band, a cool light ceiling band, and a wall whose hue follows whichever
+section sits behind it (each section's `accent`, blended smoothly around the ring
+and peaking at section centers), with softly darkened floor↔wall and wall↔ceiling
+seams. Colors are assigned per vertex from its height band (its lathe profile
+index) and its angle. All dimensions/tones live in `WORLD` in `layout.js`;
+`wallRadius` sits behind the backmost diorama layer.
 
 **Gotcha — camera facing:** `Object3D.lookAt()` on the camera *group* (a
 non-camera) points the group's **+Z** at the target, but the child camera looks
