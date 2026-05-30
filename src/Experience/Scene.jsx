@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import CustomCamera from "./components/CustomCamera.jsx";
+import WorldShell from "./components/WorldShell.jsx";
 import Section from "./components/Section.jsx";
 import { SECTIONS } from "../config/content.js";
 import { useExperienceStore } from "../store/useExperienceStore";
@@ -16,6 +17,7 @@ export default function Scene() {
     <>
       <CustomCamera />
       <ambientLight intensity={1} />
+      <WorldShell />
       {SECTIONS.map((section, i) => (
         <Section key={section.key} section={section} index={i} />
       ))}

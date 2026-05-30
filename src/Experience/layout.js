@@ -14,6 +14,24 @@ export const RING = {
   lookHeight: 1.6, // height of the point the camera aims at
 };
 
+// The enclosing "world" the camera orbits inside — one continuous floor that
+// curves up into a wall and domes over into a ceiling, wrapping the full 360°
+// (see reference/aimee-weis-papercraft-world: every camera stop is a segment of
+// one enclosed round shell, never empty void). `wallRadius` sits comfortably
+// behind the backmost diorama layer (a section's most-negative depth lands near
+// sectionRadius + 3 ≈ 12), so the shell always fills the background.
+export const WORLD = {
+  floorY: -2, // ground level; section figures rest near here
+  wallRadius: 15, // radius of the wall — behind every diorama layer
+  wallTop: 6, // height at which the wall starts curving inward
+  ceilingPeak: 11, // height of the domed ceiling overhead, at center
+  // Flat (unlit) papercraft tones; WorldShell blends them vertically as a
+  // floor → wall → ceiling gradient via vertex colors.
+  floorColor: "#e7d9bd",
+  wallColor: "#cdbfa6",
+  ceilingColor: "#bcc8d6",
+};
+
 // Angle (radians) for the i-th section around the circle. Section 0 sits at the
 // camera's starting angle, so scrollProgress = i / SECTION_COUNT centers it.
 export const sectionAngle = (i) => (i / SECTION_COUNT) * Math.PI * 2;
