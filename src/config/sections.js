@@ -76,12 +76,18 @@ const LANDSCAPE_STRIP_SHADOW = {
   shadowY: -0.06,
   shadowScale: 1.006,
 };
+const ARC_BACKDROP = { followArc: true, arcStrength: 0.48, arcRotationStrength: 0.56 };
+const ARC_HOUSE = { followArc: true, arcStrength: 0.25, arcRotationStrength: 0.72 };
+const ARC_GROUND = { followArc: true, arcStrength: 0.3, arcRotationStrength: 0.42 };
+const ARC_PROP = { followArc: true, arcStrength: 0.24, arcRotationStrength: 0.36 };
+const ARC_EDGE_PROP = { followArc: true, arcStrength: 0.2, arcRotationStrength: 0.38 };
 
 const RAW_SECTION_LAYERS = {
   couple: [
     { src: "couple-bg-garland.png", depth: -3.15, scale: 6.1, x: 0, y: 1.48 },
     {
       src: "couple-wall-cards-florals.png",
+      ...ARC_BACKDROP,
       depth: -2.9,
       scale: 1.62,
       x: -7.85,
@@ -89,28 +95,28 @@ const RAW_SECTION_LAYERS = {
       rotationY: 0.2,
       contactShadow: false,
     },
-    { src: "couple-bg-garland-top.png", depth: -3.08, scale: 2.45, x: 7.8, y: 1.9, rotationY: -0.14 },
+    { src: "couple-bg-garland-top.png", ...ARC_BACKDROP, depth: -3.08, scale: 2.45, x: 7.8, y: 1.9, rotationY: -0.14 },
     { src: "person-bride-gabi.png", depth: 0.34, scale: PERSON_SCALE, x: 1.04, y: PERSON_Y },
-    { src: "couple-keepsake-cluster.png", depth: 0.86, scale: 1.35, x: -5.65, y: -1.34, rotationY: 0.16 },
-    { src: "couple-foreground-props.png", depth: 0.98, scale: 2.05, x: 6.45, y: -1.31, rotationY: -0.18 },
+    { src: "couple-keepsake-cluster.png", ...ARC_EDGE_PROP, depth: 0.86, scale: 1.35, x: -5.65, y: -1.34, rotationY: 0.16 },
+    { src: "couple-foreground-props.png", ...ARC_EDGE_PROP, depth: 0.98, scale: 2.05, x: 6.45, y: -1.31, rotationY: -0.18 },
   ],
 
   airbnb: [
     { src: "airbnb-bg-sky-treeline.png", depth: -3.85, scale: 5.8, x: 0, y: 0.78, noShadow: true },
     { src: "airbnb-open-meadow-strip.png", depth: -3.08, scale: 2.55, x: 0, y: -1.14 },
-    { src: "airbnb-mixed-woods-cluster.png", depth: -2.72, scale: 4.75, x: -8.7, y: 0.05, rotationY: 0.32 },
-    { src: "airbnb-tree-cluster-a.png", depth: -2.66, scale: 4.95, x: 8.45, y: 0.02, rotationY: -0.34, flipX: true },
+    { src: "airbnb-mixed-woods-cluster.png", ...ARC_BACKDROP, depth: -2.72, scale: 4.75, x: -8.7, y: 0.05, rotationY: 0.32 },
+    { src: "airbnb-tree-cluster-a.png", ...ARC_BACKDROP, depth: -2.66, scale: 4.95, x: 8.45, y: 0.02, rotationY: -0.34, flipX: true },
     { src: "airbnb-grass-cluster-a.png", depth: -1.85, scale: 1.12, x: -1.2, y: -1.56 },
 
-    { src: "airbnb-front.png", depth: -0.92, scale: 5.55, x: -7.15, y: 0.05, rotationY: 0.22 },
-    { src: "airbnb-back.png", depth: -0.78, scale: 5.45, x: 4.75, y: 0.05, rotationY: -0.22 },
+    { src: "airbnb-front.png", ...ARC_HOUSE, depth: -0.92, scale: 5.55, x: -7.15, y: 0.05, rotationY: 0.22 },
+    { src: "airbnb-back.png", ...ARC_HOUSE, depth: -0.78, scale: 5.45, x: 4.75, y: 0.05, rotationY: -0.22 },
 
-    { src: "airbnb-open-pond-v2.png", depth: -0.16, scale: 1.58, x: 5.95, y: -1.76, rotationY: -0.18 },
-    { src: "airbnb-long-driveway.png", depth: 0.04, scale: 3.08, x: -7.75, y: -1.35, rotationY: 0.18 },
-    { src: "airbnb-driveway-marker.png", depth: 0.18, scale: 0.82, x: -8.22, y: -1.22, rotationY: 0.18 },
-    { src: "airbnb-door-time-sign.png", depth: -0.42, scale: 0.64, x: -7.1, y: 0.66, rotationY: 0.2 },
-    { src: "airbnb-pond-marker.png", depth: 0.08, scale: 0.9, x: 6.45, y: -1.32, rotationY: -0.15 },
-    { src: "airbnb-rules-board.png", depth: 0.24, scale: 0.92, x: 6.05, y: -0.95, rotationY: -0.18 },
+    { src: "airbnb-open-pond-v2.png", ...ARC_GROUND, depth: -0.16, scale: 1.58, x: 5.95, y: -1.76, rotationY: -0.18 },
+    { src: "airbnb-long-driveway.png", ...ARC_GROUND, depth: 0.04, scale: 3.08, x: -7.75, y: -1.35, rotationY: 0.18 },
+    { src: "airbnb-driveway-marker.png", ...ARC_PROP, depth: 0.18, scale: 0.82, x: -8.22, y: -1.22, rotationY: 0.18 },
+    { src: "airbnb-door-time-sign.png", ...ARC_PROP, depth: -0.42, scale: 0.64, x: -7.1, y: 0.66, rotationY: 0.2 },
+    { src: "airbnb-pond-marker.png", ...ARC_PROP, depth: 0.08, scale: 0.9, x: 6.45, y: -1.32, rotationY: -0.15 },
+    { src: "airbnb-rules-board.png", ...ARC_PROP, depth: 0.24, scale: 0.92, x: 6.05, y: -0.95, rotationY: -0.18 },
 
     { src: "person-guest-ali.png", depth: 0.46, scale: PERSON_SCALE, x: -6.72, y: PERSON_Y },
     { src: "person-guest-moustafa.png", depth: 0.58, scale: PERSON_SCALE, x: -5.52, y: PERSON_Y },
@@ -119,7 +125,7 @@ const RAW_SECTION_LAYERS = {
     { src: "person-guest-james.png", depth: 0.56, scale: PERSON_SCALE, x: 4.55, y: PERSON_Y },
     { src: "person-guest-moose.png", depth: 0.74, scale: PERSON_SCALE, x: 5.35, y: PERSON_Y },
 
-    { src: "airbnb-foreground-path-props.png", depth: 1.02, scale: 1.62, x: -3.4, y: -1.53, rotationY: 0.12 },
+    { src: "airbnb-foreground-path-props.png", ...ARC_EDGE_PROP, depth: 1.02, scale: 1.62, x: -3.4, y: -1.53, rotationY: 0.12 },
   ],
 
   activities: [
@@ -132,11 +138,11 @@ const RAW_SECTION_LAYERS = {
       y: 1.62,
       contactShadow: false,
     },
-    { src: "activities-shoreline-gear.png", depth: -1.72, scale: 2.7, x: -2.7, y: -1.12, rotationY: 0.04 },
-    { src: "activities-fireplace.png", depth: -1.04, scale: 2.5, x: 6.4, y: -0.82, rotationY: -0.22 },
-    { src: "activities-brisket-games.png", depth: -0.58, scale: 3.55, x: 0.75, y: -0.55, rotationY: -0.04 },
-    { src: "activities-reservoir-boat.png", depth: 0.48, scale: 3.22, x: -7.85, y: -0.92, rotationY: 0.28 },
-    { src: "activities-edge-games-props.png", depth: 0.7, scale: 1.9, x: 8.35, y: -1.08, rotationY: -0.24 },
+    { src: "activities-shoreline-gear.png", ...ARC_GROUND, depth: -1.72, scale: 2.7, x: -2.7, y: -1.12, rotationY: 0.04 },
+    { src: "activities-fireplace.png", ...ARC_GROUND, depth: -1.04, scale: 2.5, x: 6.4, y: -0.82, rotationY: -0.22 },
+    { src: "activities-brisket-games.png", ...ARC_PROP, depth: -0.58, scale: 3.55, x: 0.75, y: -0.55, rotationY: -0.04 },
+    { src: "activities-reservoir-boat.png", ...ARC_EDGE_PROP, depth: 0.48, scale: 3.22, x: -7.85, y: -0.92, rotationY: 0.28 },
+    { src: "activities-edge-games-props.png", ...ARC_EDGE_PROP, depth: 0.7, scale: 1.9, x: 8.35, y: -1.08, rotationY: -0.24 },
   ],
 
   packing: [
@@ -157,12 +163,12 @@ const RAW_SECTION_LAYERS = {
       rotationY: 0.15,
       contactShadow: false,
     },
-    { src: "packing-night-weekend-gear.png", depth: -2.02, scale: 2.5, x: 8.25, y: -0.72, rotationY: -0.24 },
-    { src: "packing-boat-gear.png", depth: -1.08, scale: 2.35, x: -8.0, y: -0.82, rotationY: 0.24 },
-    { src: "packing-field-gear.png", depth: -0.72, scale: 2.1, x: 3.2, y: -0.9, rotationY: -0.08 },
-    { src: "packing-duffel-checklist.png", depth: 0.48, scale: 3.22, x: -1.0, y: -0.88, rotationY: 0.04 },
-    { src: "packing-side-gear-cluster.png", depth: 0.88, scale: 1.55, x: -5.85, y: -1.22, rotationY: 0.22 },
-    { src: "packing-camp-night-cluster.png", depth: 0.96, scale: 1.65, x: 5.75, y: -1.18, rotationY: -0.18 },
+    { src: "packing-night-weekend-gear.png", ...ARC_GROUND, depth: -2.02, scale: 2.5, x: 8.25, y: -0.72, rotationY: -0.24 },
+    { src: "packing-boat-gear.png", ...ARC_GROUND, depth: -1.08, scale: 2.35, x: -8.0, y: -0.82, rotationY: 0.24 },
+    { src: "packing-field-gear.png", ...ARC_PROP, depth: -0.72, scale: 2.1, x: 3.2, y: -0.9, rotationY: -0.08 },
+    { src: "packing-duffel-checklist.png", ...ARC_PROP, depth: 0.48, scale: 3.22, x: -1.0, y: -0.88, rotationY: 0.04 },
+    { src: "packing-side-gear-cluster.png", ...ARC_EDGE_PROP, depth: 0.88, scale: 1.55, x: -5.85, y: -1.22, rotationY: 0.22 },
+    { src: "packing-camp-night-cluster.png", ...ARC_EDGE_PROP, depth: 0.96, scale: 1.65, x: 5.75, y: -1.18, rotationY: -0.18 },
   ],
 };
 

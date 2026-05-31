@@ -2,13 +2,38 @@ import { useTexture, Html } from "@react-three/drei";
 import * as THREE from "three";
 import { useMemo } from "react";
 import { asset } from "../../config/assets.js";
-import { WORLD } from "../layout.js";
+import { RING, WORLD } from "../layout.js";
 
 // One flat cutout on a plane. Width is derived from the image aspect ratio so
 // art never stretches. Layers sit at different local Z (`depth`) within their
 // section group, and the real perspective camera turns that into parallax.
 
 const SHADOW_COLOR = "#2b2118";
+
+const getArcTransform = ({
+  x,
+  depth,
+  rotationY,
+  followArc,
+  arcStrength,
+  arcRotationStrength,
+  arcRadius,
+}) => {
+  if (!followArc) return { x, depth, rotationY };
+
+  const radius = Math.max(1, arcRadius ?? RING.sectionRadius - depth);
+  const theta = x / radius;
+  const curvedX = Math.sin(theta) * radius;
+  const curvedDepth = RING.sectionRadius - Math.cos(theta) * radius;
+  const strength = THREE.MathUtils.clamp(arcStrength, 0, 1);
+  const rotationStrength = THREE.MathUtils.clamp(arcRotationStrength, 0, 1);
+
+  return {
+    x: THREE.MathUtils.lerp(x, curvedX, strength),
+    depth: THREE.MathUtils.lerp(depth, curvedDepth, strength),
+    rotationY: rotationY - theta * rotationStrength,
+  };
+};
 
 function TexturedLayer({
   src,
@@ -20,6 +45,10 @@ function TexturedLayer({
   rotationY,
   rotationZ,
   flipX,
+  followArc,
+  arcStrength,
+  arcRotationStrength,
+  arcRadius,
   shadow,
   shadowOpacity,
   shadowX,
@@ -49,12 +78,21 @@ function TexturedLayer({
 
   const contactW = contactShadowWidth ?? Math.max(0.34, w * contactShadowScaleX);
   const contactD = contactShadowDepth ?? Math.max(0.18, scale * contactShadowScaleZ);
+  const transform = getArcTransform({
+    x,
+    depth,
+    rotationY,
+    followArc,
+    arcStrength,
+    arcRotationStrength,
+    arcRadius,
+  });
 
   return (
     <group>
       {contactShadow ? (
         <mesh
-          position={[x + contactShadowX, contactShadowY, depth + contactShadowZ]}
+          position={[transform.x + contactShadowX, contactShadowY, transform.depth + contactShadowZ]}
           rotation={[-Math.PI / 2, 0, 0]}
           scale={[contactW, contactD, 1]}
           renderOrder={0}
@@ -72,8 +110,8 @@ function TexturedLayer({
       ) : null}
       {shadow ? (
         <mesh
-          position={[x + shadowX, y + shadowY, depth - shadowDepthOffset]}
-          rotation={[rotationX, rotationY, rotationZ]}
+          position={[transform.x + shadowX, y + shadowY, transform.depth - shadowDepthOffset]}
+          rotation={[rotationX, transform.rotationY, rotationZ]}
           scale={[flipX ? -shadowScale : shadowScale, shadowScale, 1]}
           renderOrder={1}
         >
@@ -91,8 +129,8 @@ function TexturedLayer({
         </mesh>
       ) : null}
       <mesh
-        position={[x, y, depth]}
-        rotation={[rotationX, rotationY, rotationZ]}
+        position={[transform.x, y, transform.depth]}
+        rotation={[rotationX, transform.rotationY, rotationZ]}
         scale={[flipX ? -1 : 1, 1, 1]}
         renderOrder={2}
       >
@@ -145,6 +183,10 @@ export default function PaperLayer({ layer, accent }) {
     rotationY = 0,
     rotationZ = 0,
     flipX = false,
+    followArc = false,
+    arcStrength = 0.55,
+    arcRotationStrength = arcStrength,
+    arcRadius,
     shadow = false,
     shadowOpacity = 0.18,
     shadowX = 0.08,
@@ -174,6 +216,10 @@ export default function PaperLayer({ layer, accent }) {
       rotationY={rotationY}
       rotationZ={rotationZ}
       flipX={flipX}
+      followArc={followArc}
+      arcStrength={arcStrength}
+      arcRotationStrength={arcRotationStrength}
+      arcRadius={arcRadius}
       shadow={shadow}
       shadowOpacity={shadowOpacity}
       shadowX={shadowX}

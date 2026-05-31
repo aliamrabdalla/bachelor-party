@@ -248,7 +248,19 @@ Acceptance:
 - Groom does not hide behind important environmental assets.
 - Loop transition is smooth.
 
-## 7. Make major assets obey circular perspective
+## [x] 7. Make major assets obey circular perspective
+
+Completed in curved-layer-perspective milestone:
+- Added optional followArc support to PaperLayer so large cutouts can bend their
+  local x/depth placement and facing direction around the circular room.
+- Kept existing flat layer configs backward-compatible; only selected large
+  backdrop, house, ground, edge prop, and gear layers opt into the curved
+  transform.
+- Applied curved placement to Airbnb front/back house pieces, driveway, pond,
+  markers, woods, Weekend activity clusters, Packing gear clusters, and Couple
+  edge props.
+- Verified build plus desktop/mobile section centers and boundary captures with
+  installed approved Chrome.
 
 Problem:
 - Major assets often face the camera like billboards.
