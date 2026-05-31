@@ -8,7 +8,7 @@ import { SECTIONS } from "../../config/content.js";
 // alcove is a 90° wedge: a flat floor sector, a vertical wall arc, and a flat
 // ceiling sector, each a single FLAT solid color (so it reads as cut paper, not
 // a glow). Adjacent alcoves use different colors and meet at a HARD edge, and a
-// crisp dark seam line is drawn at each of the four boundaries.
+// folded crease is drawn at each of the four boundaries.
 
 const SECTION_ARC = (Math.PI * 2) / SECTION_COUNT; // 90°
 
@@ -134,7 +134,36 @@ function radialStrip(a, radius, y, halfWidth, innerRadius = 0.35) {
   return g;
 }
 
+function annularSector(a0, a1, innerRadius, outerRadius, y, segs = 24) {
+  const g = new THREE.BufferGeometry();
+  const pos = [];
+  const uv = [];
+  const idx = [];
+
+  for (let s = 0; s <= segs; s++) {
+    const a = a0 + ((a1 - a0) * s) / segs;
+    const ix = Math.cos(a) * innerRadius;
+    const iz = Math.sin(a) * innerRadius;
+    const ox = Math.cos(a) * outerRadius;
+    const oz = Math.sin(a) * outerRadius;
+    pos.push(ix, y, iz, ox, y, oz);
+    uv.push(s / segs, 0, s / segs, 1);
+  }
+
+  for (let s = 0; s < segs; s++) {
+    const b = s * 2;
+    idx.push(b, b + 1, b + 2, b + 1, b + 3, b + 2);
+  }
+
+  g.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+  g.setAttribute("uv", new THREE.Float32BufferAttribute(uv, 2));
+  g.setIndex(idx);
+  return g;
+}
+
 const hex = (c) => `#${c.getHexString()}`;
+const FOLD_SHADOW = "#2d241b";
+const FOLD_HIGHLIGHT = "#f7ecd4";
 
 export default function WorldShell() {
   const { floorY, ceilingY, wallRadius } = WORLD;
@@ -162,6 +191,10 @@ export default function WorldShell() {
         wallGeo: wallArc(a0, a1, wallRadius, floorY, ceilingY),
         floorGeo: sector(a0, a1, wallRadius, floorY),
         ceilGeo: sector(a0, a1, wallRadius, ceilingY),
+        wallFloorShadowGeo: wallArc(a0, a1, wallRadius * 0.992, floorY, floorY + 0.34),
+        wallCeilShadowGeo: wallArc(a0, a1, wallRadius * 0.992, ceilingY - 0.34, ceilingY),
+        floorWallShadowGeo: annularSector(a0, a1, wallRadius - 1.55, wallRadius * 0.985, floorY + 0.018),
+        ceilWallShadowGeo: annularSector(a0, a1, wallRadius - 1.3, wallRadius * 0.985, ceilingY - 0.018),
         wall: hex(accent.clone().lerp(paper, WORLD.wallPaperMix)),
         floor: s.shell?.floor ?? hex(accent.clone().lerp(floorBlend, WORLD.floorBlendAmt)),
         ceil: hex(accent.clone().lerp(ceilBlend, WORLD.ceilBlendAmt)),
@@ -169,16 +202,35 @@ export default function WorldShell() {
     });
   }, [floorY, ceilingY, wallRadius]);
 
-  // A crisp dark line at each of the four alcove boundaries — a thin full-height
-  // strip set just inside the wall so the division reads as a hard edge.
+  // Layered folds at each alcove boundary: a narrow crease preserves the hard
+  // color break, while wider low-opacity strips make the joint feel physical.
   const seams = useMemo(() => {
     const arr = [];
     for (let i = 0; i < SECTION_COUNT; i++) {
       const ab = sectionAngle(i) + SECTION_ARC / 2; // boundary between alcove i and i+1
+      const crease = WORLD.seamHalfAngle * 0.62;
       arr.push({
-        wall: wallArc(ab - WORLD.seamHalfAngle, ab + WORLD.seamHalfAngle, wallRadius * 0.995, floorY, ceilingY, 1),
-        floor: radialStrip(ab, wallRadius * 0.985, floorY + 0.012, 0.055),
-        ceiling: radialStrip(ab, wallRadius * 0.985, ceilingY - 0.012, 0.055),
+        wallCrease: wallArc(ab - crease, ab + crease, wallRadius * 0.991, floorY, ceilingY, 1),
+        wallLeftFold: wallArc(
+          ab - WORLD.seamHalfAngle * 5.4,
+          ab - WORLD.seamHalfAngle * 0.9,
+          wallRadius * 0.99,
+          floorY,
+          ceilingY,
+          3,
+        ),
+        wallRightFold: wallArc(
+          ab + WORLD.seamHalfAngle * 0.9,
+          ab + WORLD.seamHalfAngle * 4.6,
+          wallRadius * 0.989,
+          floorY,
+          ceilingY,
+          3,
+        ),
+        floorCrease: radialStrip(ab, wallRadius * 0.985, floorY + 0.026, 0.042),
+        floorFold: radialStrip(ab, wallRadius * 0.975, floorY + 0.022, 0.16, 0.55),
+        ceilingCrease: radialStrip(ab, wallRadius * 0.985, ceilingY - 0.026, 0.042),
+        ceilingFold: radialStrip(ab, wallRadius * 0.975, ceilingY - 0.022, 0.15, 0.55),
       });
     }
     return arr;
@@ -212,27 +264,116 @@ export default function WorldShell() {
               toneMapped={false}
             />
           </mesh>
-        </group>
-      ))}
-      {seams.map((g, i) => (
-        <group key={i}>
-          <mesh geometry={g.wall} renderOrder={0}>
-            <meshBasicMaterial color={WORLD.seamColor} side={THREE.DoubleSide} toneMapped={false} />
-          </mesh>
-          <mesh geometry={g.floor} renderOrder={0}>
+          <mesh geometry={s.wallFloorShadowGeo} renderOrder={0}>
             <meshBasicMaterial
-              color={WORLD.seamColor}
+              color={FOLD_SHADOW}
               transparent
-              opacity={0.62}
+              opacity={0.13}
+              depthWrite={false}
               side={THREE.DoubleSide}
               toneMapped={false}
             />
           </mesh>
-          <mesh geometry={g.ceiling} renderOrder={0}>
+          <mesh geometry={s.wallCeilShadowGeo} renderOrder={0}>
+            <meshBasicMaterial
+              color={FOLD_SHADOW}
+              transparent
+              opacity={0.09}
+              depthWrite={false}
+              side={THREE.DoubleSide}
+              toneMapped={false}
+            />
+          </mesh>
+          <mesh geometry={s.floorWallShadowGeo} renderOrder={0}>
+            <meshBasicMaterial
+              color={FOLD_SHADOW}
+              transparent
+              opacity={0.1}
+              depthWrite={false}
+              side={THREE.DoubleSide}
+              toneMapped={false}
+            />
+          </mesh>
+          <mesh geometry={s.ceilWallShadowGeo} renderOrder={0}>
+            <meshBasicMaterial
+              color={FOLD_SHADOW}
+              transparent
+              opacity={0.06}
+              depthWrite={false}
+              side={THREE.DoubleSide}
+              toneMapped={false}
+            />
+          </mesh>
+        </group>
+      ))}
+      {seams.map((g, i) => (
+        <group key={i}>
+          <mesh geometry={g.wallLeftFold} renderOrder={1}>
+            <meshBasicMaterial
+              color={FOLD_SHADOW}
+              transparent
+              opacity={0.16}
+              depthWrite={false}
+              side={THREE.DoubleSide}
+              toneMapped={false}
+            />
+          </mesh>
+          <mesh geometry={g.wallRightFold} renderOrder={1}>
+            <meshBasicMaterial
+              color={FOLD_HIGHLIGHT}
+              transparent
+              opacity={0.1}
+              depthWrite={false}
+              side={THREE.DoubleSide}
+              toneMapped={false}
+            />
+          </mesh>
+          <mesh geometry={g.wallCrease} renderOrder={2}>
             <meshBasicMaterial
               color={WORLD.seamColor}
               transparent
-              opacity={0.48}
+              opacity={0.56}
+              depthWrite={false}
+              side={THREE.DoubleSide}
+              toneMapped={false}
+            />
+          </mesh>
+          <mesh geometry={g.floorFold} renderOrder={1}>
+            <meshBasicMaterial
+              color={FOLD_SHADOW}
+              transparent
+              opacity={0.12}
+              depthWrite={false}
+              side={THREE.DoubleSide}
+              toneMapped={false}
+            />
+          </mesh>
+          <mesh geometry={g.floorCrease} renderOrder={2}>
+            <meshBasicMaterial
+              color={WORLD.seamColor}
+              transparent
+              opacity={0.38}
+              depthWrite={false}
+              side={THREE.DoubleSide}
+              toneMapped={false}
+            />
+          </mesh>
+          <mesh geometry={g.ceilingFold} renderOrder={1}>
+            <meshBasicMaterial
+              color={FOLD_SHADOW}
+              transparent
+              opacity={0.08}
+              depthWrite={false}
+              side={THREE.DoubleSide}
+              toneMapped={false}
+            />
+          </mesh>
+          <mesh geometry={g.ceilingCrease} renderOrder={2}>
+            <meshBasicMaterial
+              color={WORLD.seamColor}
+              transparent
+              opacity={0.26}
+              depthWrite={false}
               side={THREE.DoubleSide}
               toneMapped={false}
             />

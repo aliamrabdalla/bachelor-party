@@ -51,7 +51,14 @@ Acceptance:
 - SectionNav still centers the four sections correctly.
 - Looping from Get Ready back to The Groom & His Bride has no visible snap.
 
-## 2. Make section transitions feel like physical folded-room corners
+## [x] 2. Make section transitions feel like physical folded-room corners
+
+Completed in folded-world-shell milestone:
+- Replaced harsh full-strength seam strips with layered wall/floor/ceiling
+  crease geometry.
+- Added flat paper shadow bands where walls meet the floor and ceiling.
+- Verified desktop section centers, boundary views, zoom levels, and mobile
+  corner framing with installed approved Chrome.
 
 Problem:
 - Current seams are harsh black divider strips.
