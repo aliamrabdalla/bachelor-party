@@ -202,7 +202,19 @@ Acceptance:
 - Boundary views have objects or composition on both sides.
 - No section reads as one central cluster on a blank wall.
 
-## 6. Rebuild the moving groom as the main handmade puppet
+## [x] 6. Rebuild the moving groom as the main handmade puppet
+
+Completed in moving-groom-puppet milestone:
+- Added scene-specific side-walk groom PNGs for Couple, Airbnb, Weekend, and
+  Get Ready while keeping existing front-facing outfit variants.
+- Rebuilt MovingGroom around an authored character curve instead of a perfectly
+  fixed circular rail.
+- Swapped between front and side puppet poses based on scroll movement, including
+  mirrored direction for reverse scrolling.
+- Enlarged the puppet, improved stick mounting, bobbing, sway, and floor contact
+  shadow so he reads as the handmade moving subject.
+- Verified build plus desktop/mobile idle and moving-scroll captures with
+  installed approved Chrome.
 
 Problem:
 - The moving groom still reads as one sprite riding a fixed circular rail.
