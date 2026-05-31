@@ -1,0 +1,339 @@
+# Reference-Quality Papercraft Rework TODO
+
+This file is the execution checklist for fixing every high-priority gap found in
+the reference audit. The reference site at
+reference/aimee-weis-papercraft-world/ remains the visual gold standard for
+world layout, camera/scroll feel, composition, shadows, layering, and movement.
+
+Implementation must stay WebGL + flat transparent PNG cutouts. Do not copy the
+reference WebGPU or Blender pipeline.
+
+Execute these items in order. The spatial system comes first because asset
+placement and polish cannot be judged correctly until camera movement, seams,
+and zoom behavior are closer to the reference.
+
+## 1. Replace the perfect circular camera path
+
+Problem:
+- The current camera path is a mathematically even circle.
+- This makes the site feel like four flat illustrated panels on a cylinder.
+- The reference uses authored curves with changing height, radius, framing, and
+  look direction, which makes movement feel handmade and spatial.
+
+Plan:
+- Replace the generated circle in src/Experience/components/Curves.js with
+  authored CatmullRom control points for camera position and look-at.
+- Preserve section centers at progress 0, .25, .5, and .75 so SectionNav and
+  content timing remain stable.
+- Add intermediate control points around each boundary at .125, .375, .625, and
+  .875 so turns through corners are composed rather than mechanical.
+- Vary camera height and radius by section:
+  - Couple: slightly wider, gentle downward view, centered on wall decor and two
+    people.
+  - Airbnb: wider horizontal reveal, front house left and back house right.
+  - Weekend: wider floor/foreground reveal for boat, brisket, field games, fire.
+  - Packing: tighter central view so the gear pile does not feel lost.
+- Vary look-at height rather than using one constant radial target.
+- Keep the exported curve names cameraPathCurve and cameraLookAtCurve so
+  CustomCamera continues to work.
+- Add mobile curve variants only if desktop-authored curves crop badly on mobile.
+
+Acceptance:
+- Scrolling feels like traveling through one handmade circular room.
+- Boundary views are composed and do not expose giant empty wedges.
+- SectionNav still centers the four sections correctly.
+- Looping from Get Ready back to The Groom & His Bride has no visible snap.
+
+## 2. Make section transitions feel like physical folded-room corners
+
+Problem:
+- Current seams are harsh black divider strips.
+- The reference reads as walls, floor, and ceiling meeting in folded paper
+  corners with shadows and visible dimensionality.
+
+Plan:
+- Rework src/Experience/components/WorldShell.jsx seam geometry.
+- Replace or visually soften the black seam strips with folded paper corner
+  geometry.
+- Keep hard section color boundaries, but make them feel like colored paper
+  walls meeting, not a debug divider.
+- Add floor-wall shadow bands around the circular room.
+- Add ceiling-wall shadow bands around the circular room.
+- Keep the bottom and top convergence lines visible enough to show the
+  intentional room structure.
+- Tune seam opacity per surface:
+  - Wall seam: visible but not pure black.
+  - Floor seam: subtle paper fold shadow.
+  - Ceiling seam: lighter fold shadow.
+
+Acceptance:
+- At progress .125, .375, .625, and .875, corners feel intentional and physical.
+- The top and bottom meeting points are readable.
+- The scene no longer looks like disconnected panels.
+- No smooth-gradient glow is introduced.
+
+## 3. Add paper depth and contact shadows
+
+Problem:
+- Many PNG layers float without grounding.
+- The reference has baked ambient occlusion, contact shadows, paper thickness,
+  and subtle layering.
+
+Plan:
+- Extend src/Experience/components/PaperLayer.jsx with optional shadow fields in
+  layer config:
+  - shadow: boolean
+  - shadowOpacity: number
+  - shadowX: number
+  - shadowY: number
+  - shadowScale: number
+  - shadowBlur or shadowSoftness: number, if implemented cheaply
+- Implement deterministic shadow planes behind/under cutouts using the same
+  image alpha when practical, or simple soft oval/offset planes for ground
+  contact.
+- Keep existing layer config backward-compatible: layers without shadow fields
+  render exactly as before.
+- Add contact shadows in src/config/sections.js for:
+  - Houses and large cabin pieces.
+  - People and moving groom.
+  - Trees, shrubs, grass clusters, pond, driveway, and major props.
+  - Door/rules/pond/driveway indicators.
+- Add very subtle paper-edge depth where assets look pasted flat.
+
+Acceptance:
+- Houses, people, trees, and props feel grounded.
+- Layering reads as paper stacked in depth, not stickers floating in space.
+- Shadows are flat/craft-like, not realistic/glossy or smooth glow effects.
+
+## 4. Recompose zoom behavior
+
+Problem:
+- The widest zoom exposes the whole wedge and makes assets look small.
+- The reference wide zoom is still curated and immersive.
+
+Plan:
+- Update src/store/useCameraStore.js:
+  - Raise min zoom from 0.6 to about 0.9.
+  - Retune default zoom after the authored camera curves land.
+  - Keep max zoom high enough for detail inspection without cropping the main
+    subject awkwardly.
+- Recheck ZoomSlider layout after changing the range.
+- Tune default zoom section by section through camera curves first, not per-asset
+  hacks.
+
+Acceptance:
+- Widest zoom still looks designed and full.
+- Default zoom resembles the reference's comfortable immersive framing.
+- Closest zoom does not hide important people, key props, or controls.
+- Mobile framing remains usable.
+
+## 5. Redistribute objects vertically and horizontally
+
+Problem:
+- Ours still clusters too much in the lower-middle area.
+- The reference uses wall, ceiling-adjacent space, midground, floor, foreground,
+  and side edges.
+
+Plan:
+- Add or repurpose assets so every section has:
+  - Upper-wall decoration.
+  - Side-edge objects.
+  - Midground scenery.
+  - Foreground/floor objects.
+  - Boundary-adjacent elements.
+- Couple:
+  - Keep garlands and wedding props, but avoid repeated whole-board duplicates.
+  - Add side-wall and floor-edge craft elements so seam views are not bare.
+- Airbnb:
+  - Preserve front house on the left and back house/pond on the right.
+  - Add open grassy property elements, not dense cattails/lily-pad pond details.
+  - Keep driveway long and connected to the left edge.
+- Weekend:
+  - Spread boat, brisket, field games, and fireplace across the quarter.
+  - Keep static people out of this section except the moving groom.
+  - Keep background woods edge-to-edge.
+- Packing:
+  - Add upper-wall/side-wall packing tags, paper notes, or gear silhouettes.
+  - Keep the gear pile large, but reduce the empty wall above it.
+- Remove or replace any filler that obviously repeats the same art.
+
+Acceptance:
+- Every section has meaningful visual weight across the full 90-degree quarter.
+- Boundary views have objects or composition on both sides.
+- No section reads as one central cluster on a blank wall.
+
+## 6. Rebuild the moving groom as the main handmade puppet
+
+Problem:
+- The moving groom still reads as one sprite riding a fixed circular rail.
+- The reference subject switches pose, reacts to scrolling, and feels mounted in
+  the world.
+
+Plan:
+- Create or generate scene-specific front and side variants:
+  - person-groom-couple-front.png
+  - person-groom-couple-side.png
+  - person-groom-airbnb-front.png
+  - person-groom-airbnb-side.png
+  - person-groom-weekend-front.png
+  - person-groom-weekend-side.png
+  - person-groom-packing-front.png
+  - person-groom-packing-side.png
+- Keep outfit changes per section.
+- In src/Experience/components/MovingGroom.jsx:
+  - Use an authored moving-character curve that harmonizes with the camera curve.
+  - Switch side/front pose based on scroll movement and idle state.
+  - Keep the groom visible as the central moving subject around the whole loop.
+  - Improve stick mounting so the pole clearly attaches to the puppet.
+  - Increase bobbing and small sway, but keep it whimsical rather than chaotic.
+  - Handle loop jumps without snapping.
+- Consider a small paper foot/contact shadow that follows the groom.
+
+Acceptance:
+- Groom feels like a handmade stick-mounted puppet.
+- Groom changes outfit per scene.
+- Groom direction/pose responds to movement.
+- Groom does not hide behind important environmental assets.
+- Loop transition is smooth.
+
+## 7. Make major assets obey circular perspective
+
+Problem:
+- Major assets often face the camera like billboards.
+- The reference feels arranged inside a curved room.
+
+Plan:
+- Split large scenery into modular pieces where needed instead of stretching one
+  large flat backdrop.
+- Use per-layer rotationY, depth, and x placement to make pieces follow the room.
+- Generate or edit left/right perspective variants for large assets where
+  rotation alone is not enough.
+- Airbnb:
+  - Front house should read on the left side of the quarter.
+  - Back house should read on the right side.
+  - Pond should belong to the back-house/right-side yard.
+  - Driveway should connect naturally to the front-house/left edge.
+- Trees, shrubs, grass, and background woods should curve around the space as
+  modular elements.
+
+Acceptance:
+- Houses and props no longer feel pasted flat across the viewer.
+- Side views at boundaries show believable angled assets.
+- Airbnb front/back sequence is spatially clear.
+
+## 8. Replace obvious alert markers with in-world indicators
+
+Problem:
+- Red exclamation markers are readable but still feel like UI alerts pasted onto
+  the scene.
+- The reference uses signs, plaques, pinned notes, wall writing, and objects.
+
+Plan:
+- Keep click behavior and accessibility.
+- Replace generic floating exclamation markers with object-specific indicators:
+  - Door times: paper pin or tag attached to the Airbnb door sign.
+  - Drive time: signpost or marker embedded along the driveway.
+  - Pond details: small pond stake or tackle tag near the pond/fishing gear.
+  - Rules/checkout: badge on the rules board.
+  - Packing items: paper tags attached to the relevant gear piles.
+  - Couple details: pinned notes or wedding-card tags.
+  - Weekend activities: signs attached to activity props.
+- Avoid large floating labels and direct wall text that is unreadable at normal
+  framing.
+- Keep SectionPanel scrollable and accessible on desktop and mobile.
+
+Acceptance:
+- Information is discoverable without breaking the papercraft illusion.
+- Click targets are still usable.
+- The panel opens and scrolls reliably.
+
+## 9. Make overlay UI recede
+
+Problem:
+- The top nav/countdown and bottom-right zoom feel more dominant than the
+  reference UI.
+- The reference UI is lighter and lets the diorama own the screen.
+
+Plan:
+- Restyle SectionNav, CountdownRibbon, and ZoomSlider to feel like paper craft.
+- Keep countdown below the nav and section-themed.
+- Reduce visual weight of nav/countdown at normal view.
+- Move or restyle zoom closer to the reference:
+  - bottom-centered or less intrusive,
+  - lighter line/knob styling,
+  - clear plus/minus controls.
+- Consider a dotted craft border like the reference, if it does not fight the
+  bachelor-party design.
+- Ensure mobile nav remains usable.
+
+Acceptance:
+- UI is clear but secondary.
+- Dioriama assets and motion dominate the first impression.
+- Countdown remains readable and section-themed.
+
+## 10. Unify asset style across all sections
+
+Problem:
+- Assets mix generated papercraft, sharper AI art, real-person cutouts, and
+  cabin renders.
+- The reference is cohesive: soft paper texture, handmade edges, consistent
+  shadows, and consistent lighting.
+
+Plan:
+- Apply a shared asset treatment:
+  - paper grain,
+  - slight torn/rough edge feel,
+  - consistent color temperature,
+  - consistent lighting direction,
+  - consistent contact shadows,
+  - reduced glossy/high-resolution contrast.
+- Prioritize people and houses first because they currently show the strongest
+  style mismatch.
+- Ensure all generated or edited assets keep transparent PNG output.
+- Remove/avoid:
+  - smooth-gradient glow,
+  - weird cloud blocks,
+  - square backdrop artifacts,
+  - lily pads,
+  - large cattails,
+  - any pond details misleading for the actual open grassy Airbnb property.
+
+Acceptance:
+- Assets feel like one handmade paper world.
+- Real-person and house assets no longer clash with scenery.
+- The result sits closer to the reference without copying its model pipeline.
+
+## Global Verification Checklist
+
+Run this after each coherent milestone:
+
+- npm run build
+- Start local dev server.
+- Capture screenshots at progress:
+  - 0
+  - .125
+  - .25
+  - .375
+  - .5
+  - .625
+  - .75
+  - .875
+- Capture at wide/default/close zoom.
+- Compare against the reference site at equivalent positions and zoom levels.
+- Verify desktop and mobile framing.
+- Verify no placeholder layers.
+- Verify no broken alpha edges.
+- Verify no unreadable text pasted directly into the scene.
+- Verify no weird clouds or square background blocks.
+- Verify no empty section edges.
+- Verify no misleading pond/cattail/lily-pad details.
+- Verify moving groom path, pose changes, outfit changes, stick bobbing, and
+  loop transition.
+- Verify panel click and scroll behavior on desktop and mobile.
+
+## Commit And Review Workflow
+
+- Commit and push to main after each coherent milestone.
+- The user reviews the live GitHub Pages deploy, not the local dev server.
+- Keep scratch screenshots out of git.
+- Do not delete or overwrite hand-added assets unless explicitly requested.
