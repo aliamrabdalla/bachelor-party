@@ -112,20 +112,20 @@ const RAW_SECTION_LAYERS = {
     { src: "airbnb-back.png", ...ARC_HOUSE, depth: -0.78, scale: 5.45, x: 4.75, y: 0.05, rotationY: -0.22 },
 
     { src: "airbnb-open-pond-v2.png", ...ARC_GROUND, depth: -0.16, scale: 1.58, x: 5.95, y: -1.76, rotationY: -0.18 },
-    { src: "airbnb-long-driveway.png", ...ARC_GROUND, depth: -0.38, scale: 2.52, x: -8.9, y: -1.74, rotationY: 0.11, arcStrength: 0.22 },
-    { src: "airbnb-driveway-marker.png", ...ARC_PROP, depth: 0.1, scale: 1.08, x: -6.92, y: -1.28, rotationY: 0.12 },
+    { src: "airbnb-long-driveway.png", ...ARC_GROUND, followArc: false, depth: -1.16, scale: 2.52, x: -8.65, y: -1.74, rotationY: 0.04 },
+    { src: "airbnb-driveway-marker.png", ...ARC_PROP, followArc: false, depth: -0.08, scale: 0.72, x: -7.18, y: -1.5, rotationY: 0.08 },
     { src: "airbnb-door-time-sign.png", ...ARC_PROP, depth: -0.42, scale: 0.64, x: -7.1, y: 0.66, rotationY: 0.2 },
     { src: "airbnb-pond-marker.png", ...ARC_PROP, depth: 0.08, scale: 0.9, x: 6.45, y: -1.32, rotationY: -0.15 },
     { src: "airbnb-rules-board.png", ...ARC_PROP, depth: 0.24, scale: 0.92, x: 6.05, y: -0.95, rotationY: -0.18 },
 
-    { src: "person-guest-ali.png", depth: 0.46, scale: PERSON_SCALE, x: -6.72, y: PERSON_Y },
+    { src: "person-guest-ali.png", depth: 0.86, scale: PERSON_SCALE, x: -7.12, y: PERSON_Y },
     { src: "person-guest-moustafa.png", depth: 0.58, scale: PERSON_SCALE, x: -5.52, y: PERSON_Y },
     { src: "person-guest-john.png", depth: 0.5, scale: PERSON_SCALE, x: 2.05, y: PERSON_Y },
     { src: "person-guest-shawn.png", depth: 0.68, scale: PERSON_SCALE, x: 2.95, y: PERSON_Y },
     { src: "person-guest-james.png", depth: 0.56, scale: PERSON_SCALE, x: 4.55, y: PERSON_Y },
     { src: "person-guest-moose.png", depth: 0.74, scale: PERSON_SCALE, x: 5.35, y: PERSON_Y },
 
-    { src: "airbnb-foreground-path-props.png", ...ARC_EDGE_PROP, depth: 0.92, scale: 2.58, x: 3.58, y: -1.5, rotationY: -0.12 },
+    { src: "airbnb-fishing-gear-large.png", depth: 0.84, scale: 1.56, x: 6.95, y: -1.25, rotationY: -0.08 },
   ],
 
   activities: [
