@@ -12,7 +12,14 @@ Execute these items in order. The spatial system comes first because asset
 placement and polish cannot be judged correctly until camera movement, seams,
 and zoom behavior are closer to the reference.
 
-## 1. Replace the perfect circular camera path
+## [x] 1. Replace the perfect circular camera path
+
+Completed in authored-camera milestone:
+- Replaced the generated perfect circle in Curves.js with authored CatmullRom
+  camera and look-at curves.
+- Preserved semantic progress landmarks at 0, .25, .5, .75 for section centers
+  and .125, .375, .625, .875 for boundaries.
+- Verified desktop section centers, boundaries, and mobile centers.
 
 Problem:
 - The current camera path is a mathematically even circle.
@@ -105,7 +112,12 @@ Acceptance:
 - Layering reads as paper stacked in depth, not stickers floating in space.
 - Shadows are flat/craft-like, not realistic/glossy or smooth glow effects.
 
-## 4. Recompose zoom behavior
+## [x] 4. Recompose zoom behavior
+
+Completed in authored-camera milestone:
+- Raised the zoom floor from 0.6 to 0.9.
+- Kept default zoom at 1.22 after checking authored camera framing.
+- Verified wide/default/close desktop section centers and mobile section centers.
 
 Problem:
 - The widest zoom exposes the whole wedge and makes assets look small.
