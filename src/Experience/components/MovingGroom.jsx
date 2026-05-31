@@ -22,6 +22,7 @@ export default function MovingGroom() {
   const groupRef = useRef();
   const innerRef = useRef();
   const groomRef = useRef();
+  const shadowRef = useRef();
   const target = useRef(new THREE.Vector3());
   const previousProgress = useRef(0);
   const activeTexture = useRef(0);
@@ -37,7 +38,7 @@ export default function MovingGroom() {
   }, [textures]);
 
   useFrame((state) => {
-    if (!groupRef.current || !innerRef.current || !groomRef.current) return;
+    if (!groupRef.current || !innerRef.current || !groomRef.current || !shadowRef.current) return;
 
     const progress = useCurveProgressStore.getState().scrollProgress;
     const angle = progress * Math.PI * 2;
@@ -57,6 +58,7 @@ export default function MovingGroom() {
 
     groupRef.current.rotation.set(0, sectionFacingRotation(progress * SECTION_COUNT), 0);
     innerRef.current.rotation.set(0, 0, sway);
+    shadowRef.current.position.y = WORLD.floorY + 0.026 - groupRef.current.position.y;
 
     if (activeTexture.current !== sectionIndex) {
       groomRef.current.material.map = textures[sectionIndex];
@@ -69,6 +71,23 @@ export default function MovingGroom() {
 
   return (
     <group ref={groupRef}>
+      <mesh
+        ref={shadowRef}
+        position={[0, WORLD.floorY + 0.026 - GROOM_CENTER_Y, -0.08]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={[0.72, 0.24, 1]}
+        renderOrder={0}
+      >
+        <circleGeometry args={[0.5, 32]} />
+        <meshBasicMaterial
+          color="#2b2118"
+          transparent
+          opacity={0.24}
+          depthWrite={false}
+          side={THREE.DoubleSide}
+          toneMapped={false}
+        />
+      </mesh>
       <group ref={innerRef}>
         <mesh position={[0, -0.78, -0.018]}>
           <planeGeometry args={[0.07, 1.95]} />

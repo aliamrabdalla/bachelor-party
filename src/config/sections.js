@@ -4,8 +4,73 @@
 
 const PERSON_SCALE = 1.85;
 const PERSON_Y = -2 + PERSON_SCALE / 2;
+const WALL_PAPER_SHADOW = {
+  shadow: true,
+  shadowOpacity: 0.13,
+  shadowX: 0.08,
+  shadowY: -0.08,
+  shadowScale: 1.012,
+};
+const PROP_PAPER_SHADOW = {
+  shadow: true,
+  shadowOpacity: 0.18,
+  shadowX: 0.09,
+  shadowY: -0.08,
+  shadowScale: 1.016,
+  contactShadow: true,
+  contactShadowOpacity: 0.14,
+  contactShadowScaleX: 0.52,
+  contactShadowScaleZ: 0.12,
+};
+const TREE_PAPER_SHADOW = {
+  shadow: true,
+  shadowOpacity: 0.12,
+  shadowX: 0.11,
+  shadowY: -0.09,
+  shadowScale: 1.012,
+  contactShadow: true,
+  contactShadowOpacity: 0.09,
+  contactShadowScaleX: 0.34,
+  contactShadowScaleZ: 0.08,
+  contactShadowZ: 0.14,
+};
+const HOUSE_PAPER_SHADOW = {
+  shadow: true,
+  shadowOpacity: 0.22,
+  shadowX: 0.16,
+  shadowY: -0.13,
+  shadowScale: 1.012,
+  contactShadow: true,
+  contactShadowOpacity: 0.2,
+  contactShadowScaleX: 0.64,
+  contactShadowScaleZ: 0.12,
+  contactShadowZ: 0.2,
+};
+const PERSON_PAPER_SHADOW = {
+  shadow: true,
+  shadowOpacity: 0.18,
+  shadowX: 0.06,
+  shadowY: -0.07,
+  shadowScale: 1.01,
+  contactShadow: true,
+  contactShadowOpacity: 0.22,
+  contactShadowWidth: 0.62,
+  contactShadowDepth: 0.22,
+  contactShadowZ: 0.08,
+};
+const GROUND_PAPER_SHADOW = {
+  shadow: true,
+  shadowOpacity: 0.1,
+  shadowX: 0.05,
+  shadowY: -0.04,
+  shadowScale: 1.006,
+  contactShadow: true,
+  contactShadowOpacity: 0.08,
+  contactShadowScaleX: 0.44,
+  contactShadowScaleZ: 0.08,
+};
 
-export const SECTION_LAYERS = {
+const RAW_SECTION_LAYERS = {
   couple: [
     { src: "couple-bg-garland-top.png", depth: -3.22, scale: 2.75, x: -7.25, y: 1.78, rotationY: 0.08 },
     { src: "couple-bg-garland.png", depth: -3.15, scale: 6.25, x: 0, y: 1.48 },
@@ -82,3 +147,29 @@ export const SECTION_LAYERS = {
     { src: "airbnb-grass-cluster-a.png", depth: 1.14, scale: 0.8, x: 6.7, y: -1.71, rotationY: -0.2, flipX: true },
   ],
 };
+
+const shadowPresetFor = (src = "") => {
+  if (src.includes("bg-woods")) return null;
+  if (src.includes("tree-cluster")) return TREE_PAPER_SHADOW;
+  if (src.includes("grass-cluster")) return GROUND_PAPER_SHADOW;
+  if (src.startsWith("person-")) return PERSON_PAPER_SHADOW;
+  if (src.includes("airbnb-front") || src.includes("airbnb-back")) return HOUSE_PAPER_SHADOW;
+  if (src.includes("garland")) return WALL_PAPER_SHADOW;
+  if (src.includes("driveway") || src.includes("pond") || src.includes("shoreline")) {
+    return GROUND_PAPER_SHADOW;
+  }
+  return PROP_PAPER_SHADOW;
+};
+
+const applyPaperShadows = (layer) => {
+  if (!layer.src || layer.noShadow) return layer;
+  const preset = shadowPresetFor(layer.src);
+  return preset ? { ...preset, ...layer } : layer;
+};
+
+export const SECTION_LAYERS = Object.fromEntries(
+  Object.entries(RAW_SECTION_LAYERS).map(([key, layers]) => [
+    key,
+    layers.map(applyPaperShadows),
+  ]),
+);

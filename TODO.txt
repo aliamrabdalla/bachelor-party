@@ -86,7 +86,16 @@ Acceptance:
 - The scene no longer looks like disconnected panels.
 - No smooth-gradient glow is introduced.
 
-## 3. Add paper depth and contact shadows
+## [x] 3. Add paper depth and contact shadows
+
+Completed in paper-shadow milestone:
+- Extended PaperLayer with optional flat alpha drop shadows and oval floor
+  contact shadows while preserving existing layer behavior.
+- Added section-level shadow presets for people, houses, trees, grass, props,
+  signs, and ground elements.
+- Added a floor-pinned oval contact shadow for the moving groom puppet.
+- Verified build plus desktop/mobile visual captures with installed approved
+  Chrome.
 
 Problem:
 - Many PNG layers float without grounding.
