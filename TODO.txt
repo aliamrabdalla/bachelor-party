@@ -155,7 +155,19 @@ Acceptance:
 - Closest zoom does not hide important people, key props, or controls.
 - Mobile framing remains usable.
 
-## 5. Redistribute objects vertically and horizontally
+## [x] 5. Redistribute objects vertically and horizontally
+
+Completed in asset-variety composition milestone:
+- Generated eleven new transparent papercraft PNGs for section-specific wall,
+  landscape, and prop variety.
+- Replaced obvious repeated foreground/tree/gear clusters so each section layer
+  list has no duplicate PNG filenames.
+- Added upper-wall, side-edge, midground, floor, and foreground visual weight
+  across Couple, Airbnb, Weekend, and Get Ready.
+- Tuned asset scale/placement so props read closer to realistic diorama size
+  instead of giant repeated filler.
+- Verified build plus desktop/mobile visual captures with installed approved
+  Chrome.
 
 Problem:
 - Ours still clusters too much in the lower-middle area.
