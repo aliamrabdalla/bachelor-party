@@ -13,7 +13,7 @@ const GROOM_IMAGES = [
   "person-groom-packing.png",
 ];
 
-const GROOM_SCALE = 1.68;
+const GROOM_SCALE = 1.85;
 const GROOM_RADIUS = RING.sectionRadius - 1.1;
 const GROOM_CENTER_Y = WORLD.floorY + GROOM_SCALE / 2 + 0.07;
 

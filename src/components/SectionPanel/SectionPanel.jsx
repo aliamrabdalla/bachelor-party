@@ -39,7 +39,7 @@ export default function SectionPanel() {
         onTouchMove={(e) => e.stopPropagation()}
       >
         <button className="panel-close" onClick={() => setOpenPanel(null)} aria-label="Close">
-          ✕
+          X
         </button>
 
         <span className="panel-kicker">{section.label}</span>

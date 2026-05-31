@@ -12,7 +12,7 @@ export const RING = {
   // from the outer dioramas = more depth between the camera and each scene)
   cameraHeight: 2.05, // camera eye height
   sectionRadius: 13, // how far the dioramas sit from center (pushed back for depth)
-  lookHeight: 0.85, // lower aim gives a slight downward tilt and shows the floor seams
+  lookHeight: 0.58, // lower aim gives a downward tilt and shows more of the floor seams
 };
 
 // The enclosing "world" the camera orbits inside. It is NOT a smooth gradient

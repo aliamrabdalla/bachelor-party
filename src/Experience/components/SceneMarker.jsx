@@ -14,6 +14,7 @@ export default function SceneMarker({ marker, accent, sectionKey }) {
     distanceFactor = 6,
     className = "",
   } = marker;
+  const label = [title, ...lines].filter(Boolean).join(": ");
 
   return (
     <Html
@@ -27,17 +28,14 @@ export default function SceneMarker({ marker, accent, sectionKey }) {
       <button
         className={`scene-marker ${className}`}
         type="button"
+        aria-label={label || "Open details"}
+        title={label || "Open details"}
         onClick={(e) => {
           e.stopPropagation();
           setOpenPanel(sectionKey);
         }}
       >
-        {title && <span className="scene-marker-title">{title}</span>}
-        {lines.map((line, i) => (
-          <span className="scene-marker-line" key={i}>
-            {line}
-          </span>
-        ))}
+        <span className="scene-marker-pin">!</span>
       </button>
     </Html>
   );

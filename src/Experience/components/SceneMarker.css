@@ -1,43 +1,38 @@
 .scene-marker {
-  display: block;
-  width: 100%;
+  display: grid;
+  width: 30px;
+  height: 34px;
   padding: 0;
-  border: 0;
+  place-items: center;
+  border: none;
   background: transparent;
-  color: var(--ink);
   cursor: pointer;
-  font: 800 8px/1.1 system-ui, -apple-system, "Segoe UI", sans-serif;
-  letter-spacing: 0;
-  text-align: left;
-  text-shadow:
-    0 1px 0 rgba(255, 246, 222, 0.72),
-    1px 0 0 rgba(255, 246, 222, 0.55);
+  filter: drop-shadow(0 5px 5px rgba(31, 22, 15, 0.28));
 }
 
-.scene-marker:hover {
-  color: #1f160f;
+.scene-marker-pin {
+  display: grid;
+  width: 26px;
+  height: 30px;
+  place-items: center;
+  background-color: #cf2f2b;
+  background-image:
+    radial-gradient(circle at 35% 22%, rgba(255, 255, 255, 0.32) 0 2px, transparent 2.5px),
+    repeating-linear-gradient(94deg, rgba(99, 18, 16, 0.16) 0 1px, transparent 1px 8px);
+  color: #fff8dd;
+  clip-path: polygon(50% 0, 95% 18%, 84% 78%, 50% 100%, 16% 78%, 5% 18%);
+  font: 950 20px/1 system-ui, -apple-system, "Segoe UI", sans-serif;
+  text-shadow: 0 2px 0 rgba(84, 14, 13, 0.5);
+  transform: rotate(-3deg);
+  transition: transform 0.18s ease, background-color 0.18s ease;
 }
 
-.scene-marker-title {
-  display: block;
-  margin-bottom: 2px;
-  color: var(--accent);
-  font-size: 8px;
-  font-weight: 900;
-  text-transform: uppercase;
+.scene-marker:hover .scene-marker-pin {
+  background-color: #e13a33;
+  transform: rotate(2deg) translateY(-2px);
 }
 
-.scene-marker-line {
-  display: block;
-  font-size: 8px;
-  font-weight: 800;
-  line-height: 1.12;
-}
-
-.scene-marker--drive {
-  transform: rotate(-4deg);
-}
-
-.scene-marker--rules .scene-marker-line {
-  font-size: 7px;
+.scene-marker:focus-visible .scene-marker-pin {
+  outline: 2px solid #fff8dd;
+  outline-offset: 3px;
 }
