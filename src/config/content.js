@@ -35,6 +35,7 @@ export const SECTIONS = [
         depth: -1.35,
         width: 116,
         distanceFactor: 4.5,
+        className: "scene-marker--heart",
       },
       {
         title: "Wedding Date",
@@ -44,6 +45,7 @@ export const SECTIONS = [
         depth: -1.2,
         width: 96,
         distanceFactor: 4.3,
+        className: "scene-marker--calendar",
       },
       {
         title: "Memory Cards",
@@ -53,6 +55,7 @@ export const SECTIONS = [
         depth: 1,
         width: 98,
         distanceFactor: 4.3,
+        className: "scene-marker--cards",
       },
     ],
   },
@@ -145,6 +148,7 @@ export const SECTIONS = [
         depth: 0.82,
         width: 108,
         distanceFactor: 4.45,
+        className: "scene-marker--boat",
       },
       {
         title: "Brisket",
@@ -154,6 +158,7 @@ export const SECTIONS = [
         depth: -0.32,
         width: 92,
         distanceFactor: 4.35,
+        className: "scene-marker--brisket",
       },
       {
         title: "Field Day",
@@ -163,6 +168,7 @@ export const SECTIONS = [
         depth: -0.2,
         width: 90,
         distanceFactor: 4.25,
+        className: "scene-marker--field",
       },
       {
         title: "Fireplace",
@@ -172,6 +178,7 @@ export const SECTIONS = [
         depth: -0.84,
         width: 92,
         distanceFactor: 4.35,
+        className: "scene-marker--fire",
       },
     ],
   },
@@ -201,6 +208,7 @@ export const SECTIONS = [
         depth: -0.88,
         width: 86,
         distanceFactor: 4.3,
+        className: "scene-marker--boat-tag",
       },
       {
         title: "Field Day",
@@ -210,6 +218,7 @@ export const SECTIONS = [
         depth: -0.54,
         width: 86,
         distanceFactor: 4.3,
+        className: "scene-marker--field-tag",
       },
       {
         title: "Night Gear",
@@ -219,6 +228,7 @@ export const SECTIONS = [
         depth: -1.82,
         width: 84,
         distanceFactor: 4.3,
+        className: "scene-marker--night-tag",
       },
       {
         title: "Check-In",
@@ -228,6 +238,7 @@ export const SECTIONS = [
         depth: 0.82,
         width: 78,
         distanceFactor: 4.15,
+        className: "scene-marker--check-tag",
       },
     ],
   },

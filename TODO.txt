@@ -285,7 +285,18 @@ Acceptance:
 - Side views at boundaries show believable angled assets.
 - Airbnb front/back sequence is spatially clear.
 
-## 8. Replace obvious alert markers with in-world indicators
+## [x] 8. Replace obvious alert markers with in-world indicators
+
+Completed in in-world-marker milestone:
+- Replaced the generic red exclamation badge with small themed papercraft
+  objects rendered through SceneMarker CSS.
+- Added object-specific marker classes for door tags, driveway signs, pond
+  stakes, rules/check boards, hearts, calendar cards, memory cards, boat buoys,
+  brisket tags, field flags, fire/night badges, and packing tags.
+- Kept all click targets keyboard/ARIA-labelled and wired to the existing
+  SectionPanel.
+- Verified build, desktop marker screenshots across all four sections, mobile
+  Airbnb framing, and panel open behavior with installed approved Chrome.
 
 Problem:
 - Red exclamation markers are readable but still feel like UI alerts pasted onto

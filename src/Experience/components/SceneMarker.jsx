@@ -35,7 +35,7 @@ export default function SceneMarker({ marker, accent, sectionKey }) {
           setOpenPanel(sectionKey);
         }}
       >
-        <span className="scene-marker-pin">!</span>
+        <span className="scene-marker-token" aria-hidden="true" />
       </button>
     </Html>
   );

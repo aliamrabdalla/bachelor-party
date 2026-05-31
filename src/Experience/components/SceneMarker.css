@@ -1,38 +1,329 @@
 .scene-marker {
   display: grid;
-  width: 30px;
-  height: 34px;
+  width: 46px;
+  height: 50px;
   padding: 0;
   place-items: center;
   border: none;
   background: transparent;
   cursor: pointer;
-  filter: drop-shadow(0 5px 5px rgba(31, 22, 15, 0.28));
+  filter: drop-shadow(0 5px 5px rgba(31, 22, 15, 0.24));
 }
 
-.scene-marker-pin {
-  display: grid;
-  width: 26px;
-  height: 30px;
-  place-items: center;
-  background-color: #cf2f2b;
-  background-image:
-    radial-gradient(circle at 35% 22%, rgba(255, 255, 255, 0.32) 0 2px, transparent 2.5px),
-    repeating-linear-gradient(94deg, rgba(99, 18, 16, 0.16) 0 1px, transparent 1px 8px);
-  color: #fff8dd;
-  clip-path: polygon(50% 0, 95% 18%, 84% 78%, 50% 100%, 16% 78%, 5% 18%);
-  font: 950 20px/1 system-ui, -apple-system, "Segoe UI", sans-serif;
-  text-shadow: 0 2px 0 rgba(84, 14, 13, 0.5);
-  transform: rotate(-3deg);
-  transition: transform 0.18s ease, background-color 0.18s ease;
+.scene-marker-token {
+  position: relative;
+  display: block;
+  width: 34px;
+  height: 34px;
+  background: #fff2ce;
+  border: 2px solid #9a6b40;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.36);
+  transform: rotate(-4deg);
+  transition: transform 0.18s ease, filter 0.18s ease;
 }
 
-.scene-marker:hover .scene-marker-pin {
-  background-color: #e13a33;
+.scene-marker-token::before,
+.scene-marker-token::after {
+  content: "";
+  position: absolute;
+  display: block;
+}
+
+.scene-marker:hover .scene-marker-token {
+  filter: brightness(1.04);
   transform: rotate(2deg) translateY(-2px);
 }
 
-.scene-marker:focus-visible .scene-marker-pin {
+.scene-marker:focus-visible .scene-marker-token {
   outline: 2px solid #fff8dd;
-  outline-offset: 3px;
+  outline-offset: 4px;
+}
+
+.scene-marker--door .scene-marker-token {
+  width: 30px;
+  height: 38px;
+  background: #f4d8a2;
+  clip-path: polygon(18% 0, 82% 0, 100% 22%, 86% 100%, 14% 100%, 0 22%);
+}
+.scene-marker--door .scene-marker-token::before {
+  top: -10px;
+  left: 12px;
+  width: 18px;
+  height: 14px;
+  border-top: 2px solid #7b522f;
+  border-left: 2px solid #7b522f;
+  transform: rotate(-18deg);
+}
+.scene-marker--door .scene-marker-token::after {
+  right: 7px;
+  bottom: 9px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #cf2f2b;
+}
+
+.scene-marker--drive .scene-marker-token {
+  width: 40px;
+  height: 24px;
+  background: #e9c472;
+  clip-path: polygon(0 8%, 72% 8%, 100% 50%, 72% 92%, 0 92%);
+}
+.scene-marker--drive .scene-marker-token::before {
+  left: 7px;
+  bottom: -20px;
+  width: 5px;
+  height: 22px;
+  background: #7b522f;
+}
+.scene-marker--drive .scene-marker-token::after {
+  top: 10px;
+  left: 9px;
+  width: 20px;
+  border-top: 3px dashed rgba(82, 61, 37, 0.58);
+}
+
+.scene-marker--pond .scene-marker-token {
+  width: 36px;
+  height: 28px;
+  background:
+    radial-gradient(circle at 75% 32%, #fff6d9 0 3px, transparent 3.5px),
+    linear-gradient(0deg, transparent 0 42%, #6ca7c9 42% 52%, transparent 52% 100%),
+    linear-gradient(0deg, transparent 0 62%, #6ca7c9 62% 72%, transparent 72% 100%),
+    #e7d091;
+  border-color: #7b522f;
+  border-radius: 5px 5px 2px 2px;
+}
+.scene-marker--pond .scene-marker-token::before {
+  left: 5px;
+  bottom: -19px;
+  width: 4px;
+  height: 20px;
+  background: #7b522f;
+}
+.scene-marker--pond .scene-marker-token::after {
+  right: 8px;
+  bottom: -9px;
+  width: 18px;
+  height: 18px;
+  border-right: 2px solid #51442d;
+  border-bottom: 2px solid #51442d;
+  border-radius: 0 0 12px 0;
+}
+
+.scene-marker--rules .scene-marker-token,
+.scene-marker--calendar .scene-marker-token,
+.scene-marker--check .scene-marker-token {
+  width: 34px;
+  height: 40px;
+  background:
+    linear-gradient(#9a6b40 0 8px, transparent 8px),
+    repeating-linear-gradient(0deg, transparent 0 9px, rgba(75, 57, 35, 0.22) 9px 10px),
+    #fff0c9;
+}
+.scene-marker--rules .scene-marker-token::before,
+.scene-marker--check .scene-marker-token::before {
+  top: -7px;
+  left: 10px;
+  width: 14px;
+  height: 10px;
+  border-radius: 4px 4px 1px 1px;
+  background: #6b7d88;
+}
+.scene-marker--rules .scene-marker-token::after,
+.scene-marker--check .scene-marker-token::after {
+  top: 16px;
+  left: 9px;
+  width: 14px;
+  height: 14px;
+  border-left: 3px solid #4c9e5a;
+  border-bottom: 3px solid #4c9e5a;
+  transform: rotate(-45deg);
+}
+
+.scene-marker--heart .scene-marker-token {
+  width: 34px;
+  height: 31px;
+  border: 0;
+  background: #cf4b54;
+  clip-path: polygon(50% 92%, 8% 48%, 8% 18%, 28% 0, 50% 16%, 72% 0, 92% 18%, 92% 48%);
+}
+.scene-marker--heart .scene-marker-token::before {
+  top: -4px;
+  left: 14px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fff2ce;
+}
+
+.scene-marker--calendar .scene-marker-token {
+  border-color: #cf4b54;
+}
+.scene-marker--calendar .scene-marker-token::after {
+  inset: 15px 7px 7px;
+  background:
+    linear-gradient(90deg, transparent 0 29%, rgba(75, 57, 35, 0.2) 29% 32%, transparent 32% 63%, rgba(75, 57, 35, 0.2) 63% 66%, transparent 66%),
+    linear-gradient(0deg, transparent 0 47%, rgba(75, 57, 35, 0.2) 47% 50%, transparent 50%);
+}
+
+.scene-marker--cards .scene-marker-token {
+  width: 38px;
+  height: 28px;
+  background: #fff2ce;
+  transform: rotate(4deg);
+}
+.scene-marker--cards .scene-marker-token::before {
+  inset: 5px 5px auto auto;
+  width: 30px;
+  height: 23px;
+  background: #f3dcc0;
+  border: 2px solid #9a6b40;
+  transform: rotate(-12deg);
+  z-index: -1;
+}
+.scene-marker--cards .scene-marker-token::after {
+  right: 5px;
+  bottom: 5px;
+  width: 10px;
+  height: 8px;
+  background: #cf4b54;
+  clip-path: polygon(50% 100%, 0 42%, 0 14%, 28% 0, 50% 18%, 72% 0, 100% 14%, 100% 42%);
+}
+
+.scene-marker--boat .scene-marker-token {
+  width: 32px;
+  height: 32px;
+  border: 7px solid #d84a38;
+  border-radius: 50%;
+  background: #fff2ce;
+  box-shadow: inset 0 0 0 4px #fff2ce;
+}
+.scene-marker--boat .scene-marker-token::after {
+  inset: -7px 9px;
+  background: #fff2ce;
+  transform: rotate(45deg);
+}
+
+.scene-marker--brisket .scene-marker-token,
+.scene-marker--field .scene-marker-token,
+.scene-marker--night .scene-marker-token,
+.scene-marker--tag .scene-marker-token,
+.scene-marker--boat-tag .scene-marker-token,
+.scene-marker--field-tag .scene-marker-token,
+.scene-marker--night-tag .scene-marker-token,
+.scene-marker--check-tag .scene-marker-token {
+  width: 36px;
+  height: 28px;
+  background: #f4d8a2;
+  clip-path: polygon(0 0, 82% 0, 100% 50%, 82% 100%, 0 100%);
+}
+.scene-marker--brisket .scene-marker-token::before,
+.scene-marker--field .scene-marker-token::before,
+.scene-marker--night .scene-marker-token::before,
+.scene-marker--tag .scene-marker-token::before,
+.scene-marker--boat-tag .scene-marker-token::before,
+.scene-marker--field-tag .scene-marker-token::before,
+.scene-marker--night-tag .scene-marker-token::before,
+.scene-marker--check-tag .scene-marker-token::before {
+  top: 10px;
+  left: -13px;
+  width: 16px;
+  height: 4px;
+  background: #7b522f;
+}
+.scene-marker--brisket .scene-marker-token::after {
+  top: 8px;
+  left: 9px;
+  width: 18px;
+  height: 10px;
+  border-radius: 50%;
+  background: #9b3d2f;
+  box-shadow: 0 4px 0 #be6a43;
+}
+.scene-marker--field .scene-marker-token {
+  background: #e7c05b;
+}
+.scene-marker--field .scene-marker-token::after {
+  top: 7px;
+  left: 9px;
+  width: 17px;
+  height: 13px;
+  background: #3f7cc2;
+  clip-path: polygon(0 0, 100% 0, 72% 50%, 100% 100%, 0 100%);
+}
+.scene-marker--fire .scene-marker-token,
+.scene-marker--night .scene-marker-token {
+  background: #33445b;
+  border-color: #26334a;
+}
+.scene-marker--fire .scene-marker-token {
+  width: 33px;
+  height: 39px;
+  clip-path: polygon(50% 0, 78% 28%, 70% 52%, 94% 73%, 68% 100%, 32% 100%, 6% 73%, 30% 52%, 22% 28%);
+}
+.scene-marker--fire .scene-marker-token::after,
+.scene-marker--night .scene-marker-token::after {
+  top: 8px;
+  left: 12px;
+  width: 13px;
+  height: 18px;
+  background: #efb545;
+  clip-path: polygon(50% 0, 78% 45%, 62% 100%, 34% 100%, 18% 45%);
+}
+.scene-marker--night .scene-marker-token::after {
+  top: 8px;
+  left: 12px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #f5dd95;
+  box-shadow: 8px 8px 0 -3px #33445b;
+}
+
+.scene-marker--boat-tag .scene-marker-token {
+  background: #6ca7c9;
+}
+.scene-marker--boat-tag .scene-marker-token::after {
+  top: 10px;
+  left: 9px;
+  width: 18px;
+  border-top: 3px solid #fff2ce;
+  box-shadow: 0 6px 0 #fff2ce;
+}
+.scene-marker--field-tag .scene-marker-token {
+  background: #e7c05b;
+}
+.scene-marker--field-tag .scene-marker-token::after {
+  top: 7px;
+  left: 10px;
+  width: 16px;
+  height: 13px;
+  background: #4c9e5a;
+  clip-path: polygon(0 0, 100% 0, 70% 50%, 100% 100%, 0 100%);
+}
+.scene-marker--night-tag .scene-marker-token {
+  background: #33445b;
+}
+.scene-marker--night-tag .scene-marker-token::after {
+  top: 6px;
+  left: 12px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #f5dd95;
+  box-shadow: 7px 5px 0 -3px #33445b;
+}
+.scene-marker--check-tag .scene-marker-token {
+  background: #fff0c9;
+}
+.scene-marker--check-tag .scene-marker-token::after {
+  top: 9px;
+  left: 12px;
+  width: 14px;
+  height: 9px;
+  border-left: 3px solid #4c9e5a;
+  border-bottom: 3px solid #4c9e5a;
+  transform: rotate(-45deg);
 }
