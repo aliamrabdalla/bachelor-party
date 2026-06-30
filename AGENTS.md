@@ -120,14 +120,6 @@ No automated tests. Verify visually:
   so they look intentional at scene scale.
 - Large framed wedding photos should fill the visible frame area, while small
   stacks can use conservative crops. Avoid tiny photos floating in oversized mats.
-- Proportionality is a first-class visual QA requirement across every section.
-  People can keep their current hero scale, but trees, ponds, props, grass, and
-  background landmarks must be believable relative to the people and houses.
-- Airbnb backgrounds must span the slice and visually meet the floor/wall edge.
-  Avoid centered landscape stickers that float on the wall or leave the side
-  edges empty.
-- Airbnb ground nature should be low grass, shrubs, rocks, and believable yard
-  detail. Do not use tiny forest clusters or toy-sized ponds in the foreground.
 
 ## Deploy & review workflow
 
