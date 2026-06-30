@@ -115,6 +115,11 @@ No automated tests. Verify visually:
 - The wedding calendar must remain legible even when zoomed in: make the card and
   numbers large enough, keep all dates inside the card borders, and keep the
   wedding/bachelor-weekend highlights readable.
+- Loose floor accents in the wedding section should read as love letters, not
+  empty photo cards. Use writing lines, envelope folds, heart seals, and stamps
+  so they look intentional at scene scale.
+- Large framed wedding photos should fill the visible frame area, while small
+  stacks can use conservative crops. Avoid tiny photos floating in oversized mats.
 
 ## Deploy & review workflow
 
