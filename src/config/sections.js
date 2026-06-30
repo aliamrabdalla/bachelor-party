@@ -107,16 +107,23 @@ const RAW_SECTION_LAYERS = {
   ],
 
   airbnb: [
-    { src: "airbnb-bg-sky-treeline.png", depth: -3.85, scale: 5.8, x: 0, y: 0.78, noShadow: true },
-    { src: "airbnb-open-meadow-strip.png", depth: -3.08, scale: 2.55, x: 0, y: -1.14 },
-    { src: "airbnb-mixed-woods-cluster.png", ...ARC_BACKDROP, depth: -2.72, scale: 4.75, x: -8.7, y: 0.05, rotationY: 0.32 },
-    { src: "airbnb-tree-cluster-a.png", ...ARC_BACKDROP, depth: -2.66, scale: 4.95, x: 8.45, y: 0.02, rotationY: -0.34, flipX: true },
-    { src: "airbnb-long-driveway.png", ...ARC_GROUND, depth: -2.18, scale: 2.08, x: -8.95, y: -1.84, rotationY: 0.2, arcStrength: 0.42, arcRotationStrength: 0.5, contactShadow: false },
-    { src: "airbnb-grass-cluster-a.png", depth: -1.85, scale: 1.12, x: -1.2, y: -1.56 },
+    { src: "airbnb-ai-backdrop-wide.png", mural: true, muralPanels: 9, muralWidth: 25.4, muralOverlap: 0.12, depth: -3.85, scale: 5.95, x: 0, y: 0.72, arcStrength: 1, arcRotationStrength: 1, noShadow: true },
+    { src: "airbnb-ai-groundcover-wide.png", ...ARC_GROUND, depth: -2.18, scale: 1.08, x: -0.45, y: -1.82, rotationY: 0.02, arcStrength: 0.2, arcRotationStrength: 0.28, contactShadow: false },
+    { src: "airbnb-long-driveway.png", ...ARC_GROUND, depth: -1.96, scale: 1.48, x: -8.65, y: -1.84, rotationY: 0.16, arcStrength: 0.34, arcRotationStrength: 0.44, contactShadow: false },
 
     { src: "airbnb-back.png", ...ARC_HOUSE, depth: -1.32, scale: 4.95, x: 5.0, y: 0.0, rotationY: -0.24 },
     { src: "airbnb-front.png", ...ARC_HOUSE, depth: -0.62, scale: 5.35, x: -6.95, y: 0.03, rotationY: 0.24 },
-    { src: "airbnb-open-pond-v2.png", ...ARC_GROUND, depth: -0.86, scale: 1.34, x: 6.05, y: -1.78, rotationY: -0.18, contactShadowOpacity: 0.06 },
+
+    { src: "airbnb-ai-house-grounding.png", ...ARC_HOUSE, depth: -1.2, scale: 0.82, x: 5.05, y: -1.72, rotationY: -0.24, arcStrength: 0.25, arcRotationStrength: 0.72, contactShadow: false },
+    { src: "airbnb-ai-house-grounding.png", ...ARC_HOUSE, depth: -0.54, scale: 0.88, x: -6.95, y: -1.72, rotationY: 0.24, arcStrength: 0.25, arcRotationStrength: 0.72, contactShadow: false },
+
+    { src: "airbnb-ai-pond-right.png", ...ARC_GROUND, depth: -0.5, scale: 1.55, x: 6.45, y: -1.92, rotationY: -0.12, arcStrength: 0.24, arcRotationStrength: 0.34, contactShadowOpacity: 0.03 },
+
+    { src: "airbnb-ai-yard-detail-1.png", ...ARC_GROUND, depth: -0.46, scale: 0.52, x: -7.35, y: -1.75, rotationY: 0.14, contactShadowOpacity: 0.04 },
+    { src: "airbnb-ai-yard-detail-2.png", ...ARC_GROUND, depth: -0.3, scale: 0.46, x: -4.08, y: -1.77, rotationY: 0.08, contactShadowOpacity: 0.04 },
+    { src: "airbnb-ai-yard-detail-3.png", ...ARC_GROUND, depth: -0.16, scale: 0.48, x: -1.32, y: -1.77, rotationY: -0.02, contactShadowOpacity: 0.04 },
+    { src: "airbnb-ai-yard-detail-4.png", ...ARC_GROUND, depth: 0.02, scale: 0.44, x: 0.48, y: -1.78, rotationY: 0.02, contactShadowOpacity: 0.04 },
+    { src: "airbnb-ai-yard-detail-5.png", ...ARC_GROUND, depth: 0.16, scale: 0.5, x: 2.82, y: -1.77, rotationY: -0.06, contactShadowOpacity: 0.04 },
 
     { src: "person-guest-ali.png", depth: 0.2, scale: AIRBNB_GUEST_SCALE, x: -6.16, y: AIRBNB_GUEST_Y },
     { src: "person-guest-moustafa.png", depth: 0.28, scale: AIRBNB_GUEST_SCALE, x: -4.72, y: AIRBNB_GUEST_Y },
@@ -125,7 +132,10 @@ const RAW_SECTION_LAYERS = {
     { src: "person-guest-james.png", depth: 0.18, scale: AIRBNB_GUEST_SCALE, x: 4.18, y: AIRBNB_GUEST_Y },
     { src: "person-guest-moose.png", depth: 0.3, scale: AIRBNB_GUEST_SCALE, x: 5.48, y: AIRBNB_GUEST_Y },
 
-    { src: "airbnb-fishing-gear-large.png", depth: 0.46, scale: 1.18, x: 6.8, y: -1.43, rotationY: -0.08 },
+    { src: "airbnb-ai-yard-detail-6.png", ...ARC_GROUND, depth: 0.34, scale: 0.54, x: -2.35, y: -1.76, rotationY: 0.04, contactShadowOpacity: 0.04 },
+    { src: "airbnb-ai-yard-detail-7.png", ...ARC_GROUND, depth: 0.42, scale: 0.48, x: 0.12, y: -1.78, rotationY: -0.02, contactShadowOpacity: 0.04 },
+    { src: "airbnb-ai-yard-log-detail.png", ...ARC_GROUND, depth: 0.48, scale: 0.46, x: 8.85, y: -1.76, rotationY: -0.1, contactShadowOpacity: 0.04 },
+    { src: "airbnb-fishing-gear-large.png", depth: 0.52, scale: 0.98, x: 9.08, y: -1.49, rotationY: -0.1 },
   ],
 
   activities: [

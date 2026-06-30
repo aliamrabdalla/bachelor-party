@@ -120,6 +120,33 @@ No automated tests. Verify visually:
   so they look intentional at scene scale.
 - Large framed wedding photos should fill the visible frame area, while small
   stacks can use conservative crops. Avoid tiny photos floating in oversized mats.
+- Proportionality is a first-class visual QA requirement across every section.
+  People can keep their current hero scale, but trees, ponds, props, grass, and
+  background landmarks must be believable relative to the people and houses.
+- Generated visual assets must match the existing asset theme before they are
+  wired into the scene: warm illustrated papercraft, textured, slightly
+  painterly, and cohesive with the current house/person/gear PNGs. Do not ship
+  flat SVG-like triangles, obvious vector placeholders, or assets that look like
+  a different art pack.
+- Airbnb backgrounds must span the slice and visually meet the floor/wall edge.
+  Avoid centered landscape stickers that float on the wall or leave the side
+  edges empty.
+- Edge-to-edge backgrounds should use mural geometry or multiple curved
+  panels. Do not try to fix side-wall cutoffs by only making one centered
+  rectangular PNG wider.
+- Mural backgrounds must stay inside their section wedge. Size mural width
+  from the section arc budget so the artwork reaches the seams without bleeding
+  into adjacent sections.
+- Airbnb ground nature should be low grass, shrubs, rocks, and believable yard
+  detail. Do not use tiny forest clusters or toy-sized ponds in the foreground.
+- House and large structure bases must be visually grounded. Keep tall flora
+  from appearing under walls/decks, and add low contact shadows or foundation
+  strips where a flat house cutout would otherwise look suspended.
+- Airbnb pond assets should be large enough to read as intentional landscape
+  features, placed to one side, and nearby props/yard details should be shifted
+  so nothing appears to sit inside the water.
+- Generated prop/detail assets must have generous transparent padding and must
+  not be cropped at image edges, especially logs, flowers, and foreground props.
 
 ## Deploy & review workflow
 

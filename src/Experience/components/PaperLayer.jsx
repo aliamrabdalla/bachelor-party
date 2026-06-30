@@ -35,6 +35,85 @@ const getArcTransform = ({
   };
 };
 
+
+function MuralLayer({
+  src,
+  depth,
+  scale,
+  x,
+  y,
+  rotationX,
+  rotationY,
+  rotationZ,
+  arcStrength,
+  arcRotationStrength,
+  arcRadius,
+  muralPanels,
+  muralWidth,
+  muralOverlap,
+}) {
+  const texture = useTexture(asset(src));
+
+  const { panelWidth, totalWidth, panelTextures } = useMemo(() => {
+    const img = texture.image;
+    const aspect = img && img.width ? img.width / img.height : 1;
+    const panelCount = Math.max(1, Math.round(muralPanels));
+    const total = muralWidth ?? scale * aspect;
+    const width = total / panelCount;
+
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.anisotropy = 8;
+
+    const maps = Array.from({ length: panelCount }, (_, i) => {
+      const map = texture.clone();
+      map.colorSpace = THREE.SRGBColorSpace;
+      map.anisotropy = 8;
+      map.offset.set(i / panelCount, 0);
+      map.repeat.set(1 / panelCount, 1);
+      map.needsUpdate = true;
+      return map;
+    });
+
+    return { panelWidth: width, totalWidth: total, panelTextures: maps };
+  }, [texture, muralPanels, muralWidth, scale]);
+
+  return (
+    <group>
+      {panelTextures.map((map, i) => {
+        const localX = x - totalWidth / 2 + panelWidth * (i + 0.5);
+        const transform = getArcTransform({
+          x: localX,
+          depth,
+          rotationY,
+          followArc: true,
+          arcStrength,
+          arcRotationStrength,
+          arcRadius,
+        });
+
+        return (
+          <mesh
+            key={i}
+            position={[transform.x, y, transform.depth]}
+            rotation={[rotationX, transform.rotationY, rotationZ]}
+            renderOrder={1}
+          >
+            <planeGeometry args={[panelWidth + muralOverlap, scale]} />
+            <meshBasicMaterial
+              map={map}
+              transparent
+              alphaTest={0.08}
+              depthWrite={false}
+              side={THREE.DoubleSide}
+              toneMapped={false}
+            />
+          </mesh>
+        );
+      })}
+    </group>
+  );
+}
+
 function TexturedLayer({
   src,
   depth,
@@ -183,6 +262,10 @@ export default function PaperLayer({ layer, accent }) {
     rotationY = 0,
     rotationZ = 0,
     flipX = false,
+    mural = false,
+    muralPanels = 7,
+    muralWidth,
+    muralOverlap = 0.12,
     followArc = false,
     arcStrength = 0.55,
     arcRotationStrength = arcStrength,
@@ -205,7 +288,32 @@ export default function PaperLayer({ layer, accent }) {
     contactShadowDepth,
     label = "layer",
   } = layer;
-  return src ? (
+  if (!src) {
+    return <PlaceholderLayer label={label} depth={depth} scale={scale} x={x} y={y} accent={accent} />;
+  }
+
+  if (mural) {
+    return (
+      <MuralLayer
+        src={src}
+        depth={depth}
+        scale={scale}
+        x={x}
+        y={y}
+        rotationX={rotationX}
+        rotationY={rotationY}
+        rotationZ={rotationZ}
+        arcStrength={arcStrength}
+        arcRotationStrength={arcRotationStrength}
+        arcRadius={arcRadius}
+        muralPanels={muralPanels}
+        muralWidth={muralWidth}
+        muralOverlap={muralOverlap}
+      />
+    );
+  }
+
+  return (
     <TexturedLayer
       src={src}
       depth={depth}
@@ -237,7 +345,5 @@ export default function PaperLayer({ layer, accent }) {
       contactShadowWidth={contactShadowWidth}
       contactShadowDepth={contactShadowDepth}
     />
-  ) : (
-    <PlaceholderLayer label={label} depth={depth} scale={scale} x={x} y={y} accent={accent} />
   );
 }
