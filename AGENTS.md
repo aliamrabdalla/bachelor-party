@@ -98,6 +98,24 @@ No automated tests. Verify visually:
 3. Screenshot to confirm framing, alcove colors, seams, and parallax read correctly.
    Clean up scratch screenshots before committing.
 
+
+## Project visual QA notes
+
+- Use `playwright-cli` for visual QA before pushing any visual change. Capture the
+  current section yourself, inspect console/network, and fix obvious issues before
+  handing work back to the user.
+- Do not make the user repeat visual feedback. When feedback reveals a durable
+  expectation, record it in this section before applying the fix.
+- Wedding-section photo fills must be clipped into their host frame/card artwork.
+  Do not leave photos as free-floating rectangles on top of props.
+- Match each photo fill's rotation and perspective to the asset it belongs to;
+  mismatched tilts read as broken collage work.
+- Crop wedding photos conservatively so heads/faces are not cut off. Prefer
+  contained or face-safe crops over cover crops for small landscape frames.
+- The wedding calendar must remain legible even when zoomed in: make the card and
+  numbers large enough, keep all dates inside the card borders, and keep the
+  wedding/bachelor-weekend highlights readable.
+
 ## Deploy & review workflow
 
 - Pushing to `main` triggers `.github/workflows/deploy.yml` (build → GitHub Pages).
