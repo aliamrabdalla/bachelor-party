@@ -144,6 +144,8 @@ function TexturedLayer({
   contactShadowScaleZ,
   contactShadowWidth,
   contactShadowDepth,
+  renderOrder,
+  depthWrite,
 }) {
   const texture = useTexture(asset(src));
 
@@ -211,13 +213,14 @@ function TexturedLayer({
         position={[transform.x, y, transform.depth]}
         rotation={[rotationX, transform.rotationY, rotationZ]}
         scale={[flipX ? -1 : 1, 1, 1]}
-        renderOrder={2}
+        renderOrder={renderOrder}
       >
         <planeGeometry args={[w, h]} />
         <meshBasicMaterial
           map={texture}
           transparent
           alphaTest={0.5}
+          depthWrite={depthWrite}
           side={THREE.DoubleSide}
           toneMapped={false}
         />
@@ -286,6 +289,8 @@ export default function PaperLayer({ layer, accent }) {
     contactShadowScaleZ = 0.13,
     contactShadowWidth,
     contactShadowDepth,
+    renderOrder = 2,
+    depthWrite = true,
     label = "layer",
   } = layer;
   if (!src) {
@@ -344,6 +349,8 @@ export default function PaperLayer({ layer, accent }) {
       contactShadowScaleZ={contactShadowScaleZ}
       contactShadowWidth={contactShadowWidth}
       contactShadowDepth={contactShadowDepth}
+      renderOrder={renderOrder}
+      depthWrite={depthWrite}
     />
   );
 }

@@ -147,6 +147,11 @@ No automated tests. Verify visually:
   so nothing appears to sit inside the water.
 - Generated prop/detail assets must have generous transparent padding and must
   not be cropped at image edges, especially logs, flowers, and foreground props.
+- Avoid cluttering the Airbnb floor with many small yard-detail cutouts. If
+  they overlap, look noisy, or fight the house grounding strips, remove them
+  rather than adding more.
+- House grounding strips should sit behind foreground props, stay subtle, and
+  never read as long straight lines slicing through smaller floor assets.
 
 ## Deploy & review workflow
 

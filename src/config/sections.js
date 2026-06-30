@@ -114,16 +114,12 @@ const RAW_SECTION_LAYERS = {
     { src: "airbnb-back.png", ...ARC_HOUSE, depth: -1.32, scale: 4.95, x: 5.0, y: 0.0, rotationY: -0.24 },
     { src: "airbnb-front.png", ...ARC_HOUSE, depth: -0.62, scale: 5.35, x: -6.95, y: 0.03, rotationY: 0.24 },
 
-    { src: "airbnb-ai-house-grounding.png", ...ARC_HOUSE, depth: -1.2, scale: 0.82, x: 5.05, y: -1.72, rotationY: -0.24, arcStrength: 0.25, arcRotationStrength: 0.72, contactShadow: false },
-    { src: "airbnb-ai-house-grounding.png", ...ARC_HOUSE, depth: -0.54, scale: 0.88, x: -6.95, y: -1.72, rotationY: 0.24, arcStrength: 0.25, arcRotationStrength: 0.72, contactShadow: false },
+    { src: "airbnb-ai-house-grounding.png", ...ARC_HOUSE, depth: -1.2, scale: 0.62, x: 5.05, y: -1.82, rotationY: -0.24, arcStrength: 0.25, arcRotationStrength: 0.72, contactShadow: false, renderOrder: 1, depthWrite: false },
+    { src: "airbnb-ai-house-grounding.png", ...ARC_HOUSE, depth: -0.54, scale: 0.66, x: -6.95, y: -1.82, rotationY: 0.24, arcStrength: 0.25, arcRotationStrength: 0.72, contactShadow: false, renderOrder: 1, depthWrite: false },
 
     { src: "airbnb-ai-pond-right.png", ...ARC_GROUND, depth: -0.5, scale: 1.55, x: 6.45, y: -1.92, rotationY: -0.12, arcStrength: 0.24, arcRotationStrength: 0.34, contactShadowOpacity: 0.03 },
 
     { src: "airbnb-ai-yard-detail-1.png", ...ARC_GROUND, depth: -0.46, scale: 0.52, x: -7.35, y: -1.75, rotationY: 0.14, contactShadowOpacity: 0.04 },
-    { src: "airbnb-ai-yard-detail-2.png", ...ARC_GROUND, depth: -0.3, scale: 0.46, x: -4.08, y: -1.77, rotationY: 0.08, contactShadowOpacity: 0.04 },
-    { src: "airbnb-ai-yard-detail-3.png", ...ARC_GROUND, depth: -0.16, scale: 0.48, x: -1.32, y: -1.77, rotationY: -0.02, contactShadowOpacity: 0.04 },
-    { src: "airbnb-ai-yard-detail-4.png", ...ARC_GROUND, depth: 0.02, scale: 0.44, x: 0.48, y: -1.78, rotationY: 0.02, contactShadowOpacity: 0.04 },
-    { src: "airbnb-ai-yard-detail-5.png", ...ARC_GROUND, depth: 0.16, scale: 0.5, x: 2.82, y: -1.77, rotationY: -0.06, contactShadowOpacity: 0.04 },
 
     { src: "person-guest-ali.png", depth: 0.2, scale: AIRBNB_GUEST_SCALE, x: -6.16, y: AIRBNB_GUEST_Y },
     { src: "person-guest-moustafa.png", depth: 0.28, scale: AIRBNB_GUEST_SCALE, x: -4.72, y: AIRBNB_GUEST_Y },
@@ -132,8 +128,6 @@ const RAW_SECTION_LAYERS = {
     { src: "person-guest-james.png", depth: 0.18, scale: AIRBNB_GUEST_SCALE, x: 4.18, y: AIRBNB_GUEST_Y },
     { src: "person-guest-moose.png", depth: 0.3, scale: AIRBNB_GUEST_SCALE, x: 5.48, y: AIRBNB_GUEST_Y },
 
-    { src: "airbnb-ai-yard-detail-6.png", ...ARC_GROUND, depth: 0.34, scale: 0.54, x: -2.35, y: -1.76, rotationY: 0.04, contactShadowOpacity: 0.04 },
-    { src: "airbnb-ai-yard-detail-7.png", ...ARC_GROUND, depth: 0.42, scale: 0.48, x: 0.12, y: -1.78, rotationY: -0.02, contactShadowOpacity: 0.04 },
     { src: "airbnb-ai-yard-log-detail.png", ...ARC_GROUND, depth: 0.48, scale: 0.46, x: 8.85, y: -1.76, rotationY: -0.1, contactShadowOpacity: 0.04 },
     { src: "airbnb-fishing-gear-large.png", depth: 0.52, scale: 0.98, x: 9.08, y: -1.49, rotationY: -0.1 },
   ],
