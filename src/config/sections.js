@@ -87,6 +87,8 @@ const ARC_EDGE_PROP = { followArc: true, arcStrength: 0.2, arcRotationStrength: 
 const RAW_SECTION_LAYERS = {
   couple: [
     { src: "couple-bg-garland.png", depth: -3.15, scale: 6.1, x: 0, y: 1.48 },
+    { src: "couple-streamers-symmetric.png", depth: -3.1, scale: 6.1, x: 0, y: 1.48, noShadow: true },
+    { src: "couple-calendar-highlights.png", depth: -3.06, scale: 6.1, x: 0, y: 1.48, noShadow: true },
     {
       src: "couple-wall-cards-florals.png",
       ...ARC_BACKDROP,
@@ -97,9 +99,23 @@ const RAW_SECTION_LAYERS = {
       rotationY: 0.2,
       contactShadow: false,
     },
+    {
+      src: "couple-zola-frame-fills.png",
+      ...ARC_BACKDROP,
+      depth: -2.84,
+      scale: 1.62,
+      x: -7.85,
+      y: 0.82,
+      rotationY: 0.2,
+      noShadow: true,
+      contactShadow: false,
+    },
     { src: "couple-bg-garland-top.png", ...ARC_BACKDROP, depth: -3.08, scale: 2.45, x: 7.8, y: 1.9, rotationY: -0.14 },
-    { src: "person-bride-gabi.png", depth: 0.34, scale: PERSON_SCALE, x: 1.04, y: PERSON_Y },
+    { src: "couple-floor-accents.png", ...ARC_GROUND, depth: 0.26, scale: 2.25, x: 0, y: -1.06, rotationY: 0.02, noShadow: true, contactShadow: false },
+    { src: "person-bride-gabi-v2.png", depth: 0.34, scale: PERSON_SCALE, x: 1.04, y: PERSON_Y },
+    { src: "couple-keepsake-photo-fills.png", ...ARC_EDGE_PROP, depth: 0.84, scale: 1.35, x: -5.65, y: -1.34, rotationY: 0.16, noShadow: true, contactShadow: false },
     { src: "couple-keepsake-cluster.png", ...ARC_EDGE_PROP, depth: 0.86, scale: 1.35, x: -5.65, y: -1.34, rotationY: 0.16 },
+    { src: "couple-foreground-photo-fills.png", ...ARC_EDGE_PROP, depth: 0.96, scale: 2.05, x: 6.45, y: -1.31, rotationY: -0.18, noShadow: true, contactShadow: false },
     { src: "couple-foreground-props.png", ...ARC_EDGE_PROP, depth: 0.98, scale: 2.05, x: 6.45, y: -1.31, rotationY: -0.18 },
   ],
 

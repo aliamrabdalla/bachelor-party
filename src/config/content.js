@@ -17,11 +17,12 @@ export const SECTIONS = [
     },
     panel: {
       heading: "Youssef & Gabi",
-      body: "The weekend starts with the reason everyone is gathering: celebrating Youssef, Gabi, and the next chapter. This stop keeps the story simple and personal before the weekend turns into boats, brisket, games, and a packed house.",
+      body: "The weekend starts with the reason everyone is gathering: celebrating Youssef, Gabi, and the next chapter. The wall calendar marks the August 7 wedding date with the July 31-August 2 bachelor weekend highlighted right before it.",
       facts: [
         "Groom: Youssef",
         "Bride: Gabi",
-        "Weekend reason: celebrate the next chapter before the wedding",
+        "Wedding date: August 7, 2026",
+        "Bachelor weekend: July 31-August 2, 2026",
         "Memory cards: how they met, favorite stories, and advice for married life",
       ],
     },
