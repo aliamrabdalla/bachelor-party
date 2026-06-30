@@ -22,11 +22,11 @@
   border: 1px dashed rgba(51, 39, 28, 0.3);
   border-left: 5px solid var(--accent);
   border-bottom: 3px solid var(--section-floor);
-  background-color: rgba(244, 236, 216, 0.88);
+  background-color: rgba(244, 236, 216, 0.82);
   background-image:
     radial-gradient(circle at 14% 20%, rgba(255, 255, 255, 0.32) 0 1px, transparent 1.6px),
     repeating-linear-gradient(88deg, rgba(51, 39, 28, 0.045) 0 1px, transparent 1px 10px);
-  box-shadow: 0 8px 24px rgba(31, 22, 15, 0.22);
+  box-shadow: 0 4px 14px rgba(31, 22, 15, 0.13);
   clip-path: polygon(1% 8%, 99% 2%, 98% 94%, 2% 98%);
   color: var(--ink);
 }

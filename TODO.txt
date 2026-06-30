@@ -322,7 +322,14 @@ Acceptance:
 - Click targets are still usable.
 - The panel opens and scrolls reliably.
 
-## 9. Make overlay UI recede
+## [x] 9. Make overlay UI recede
+
+Completed in recede-overlay milestone:
+- Gave SectionNav and ZoomSlider a resting translucency (lighter background,
+  softer shadow) that returns to full strength on hover/focus, so the dioramas
+  own the screen at first glance while controls stay usable.
+- Lightened the CountdownRibbon shadow so it reads as a pinned paper note rather
+  than a heavy floating bar; kept it section-themed and readable.
 
 Problem:
 - The top nav/countdown and bottom-right zoom feel more dominant than the
