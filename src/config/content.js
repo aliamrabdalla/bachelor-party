@@ -46,6 +46,12 @@ export const SECTIONS = [
         "Pond: catch-and-release fishing; poles provided; swim at your own risk",
         "Before checkout: towels to laundry, trash to the garage bin",
       ],
+      actions: [
+        {
+          label: "Add Yourself to the Airbnb",
+          href: "https://www.airbnb.com/l/TSnV4z6P?s=67&unique_share_id=38b2c422-b911-47e9-a68d-60705937b4db",
+        },
+      ],
     },
   },
   {
@@ -75,14 +81,14 @@ export const SECTIONS = [
       floor: "#4b6f41",
     },
     panel: {
-      heading: "Pack for Water, Grass, Sun, and Fire",
-      body: "Bring the weekend basics, then add the gear that matches the plan: boat clothes, sun protection, field-day shoes, and something warm for the fireplace at night.",
+      heading: "Pack by Moment",
+      body: "Use this as the practical packing list: Friday arrival basics first, Saturday boat gear next, field-day clothes after that, then night-fire and entertainment items so nothing gets duplicated or forgotten.",
       facts: [
-        "Check-in reminder: July 31 at 3:00 PM",
-        "Boat gear: swimsuit or wet clothes, towel, sunscreen, sunglasses, hat, water bottle, sandals or water shoes",
-        "Field day: athletic clothes, sneakers, extra socks, change of shirt, bug spray",
-        "Night gear: hoodie, light jacket, comfortable pants, optional blanket or camp chair",
-        "Weekend basics: casual clothes, sleepwear, toiletries, phone charger, wallet, medications",
+        "Friday basics: duffel, casual clothes, sleepwear, toiletries, phone charger, wallet, medications",
+        "Boat morning: swimsuit or wet clothes, towel, sunscreen, sunglasses, hat, water bottle, sandals or water shoes",
+        "Field day: athletic shirt and shorts, sneakers, socks, bug spray, small day bag",
+        "Night and fire: hoodie, light jacket, comfortable pants, blanket, optional camp chair",
+        "Entertainment: one Xbox setup and one Nintendo Switch for downtime at the house",
       ],
     },
   },

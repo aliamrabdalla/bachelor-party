@@ -152,6 +152,33 @@ No automated tests. Verify visually:
   rather than adding more.
 - House grounding strips should sit behind foreground props, stay subtle, and
   never read as long straight lines slicing through smaller floor assets.
+- Untouched or later-section passes should still apply the same visual QA bar:
+  full wall coverage, grounded props, believable proportions, no major overlap,
+  and balanced foreground fill before showing the user.
+- Section backgrounds should be wide murals or section-filling compositions, not
+  centered stickers with visible rectangular edges or empty side wall space.
+- Major activity/packing clusters should occupy clear zones. Do not stack several
+  hero props in the same center area unless the overlap is intentional and clean.
+- Foreground filler should stay low, evenly spaced, and proportional. It should
+  support the scene composition, not slice through anchors or create clutter.
+- Calendar/date graphics should be deterministic when legibility matters. Avoid
+  relying on generated-image text for small numbers, date grids, or precise
+  highlight labels.
+- Do not use font-dependent symbol glyphs for critical calendar marks; draw
+  hearts/circles/highlights as geometry so they cannot fall back to question
+  marks on another machine or browser.
+- Broad ground/base layers should draw behind scene props and usually use
+  `depthWrite: false` plus a low `renderOrder`; otherwise transparent grass or
+  floor bases can cut off driveways, ponds, and small foreground assets.
+- The Get Ready section should read as organized packing prep: wall hooks/shelves
+  above, floor gear below, and clear groupings for boat, field-day, night, and
+  weekend basics.
+- Packing assets should be grouped by activity/day and generated as a cohesive
+  set when the section is being redesigned. Avoid duplicate items across assets;
+  if entertainment gear is requested, include only one Xbox setup and one
+  Nintendo Switch setup across the whole section.
+- Functional external links, such as Airbnb guest invites, belong in styled panel
+  actions instead of raw URLs or visual clutter in the diorama.
 
 ## Deploy & review workflow
 

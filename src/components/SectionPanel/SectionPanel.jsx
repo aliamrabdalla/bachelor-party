@@ -54,6 +54,22 @@ export default function SectionPanel() {
           </ul>
         )}
 
+        {panel.actions?.length > 0 && (
+          <div className="panel-actions">
+            {panel.actions.map((action) => (
+              <a
+                key={action.href}
+                className="panel-action"
+                href={action.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {action.label}
+              </a>
+            ))}
+          </div>
+        )}
+
       </aside>
     </div>
   );

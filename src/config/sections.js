@@ -108,8 +108,8 @@ const RAW_SECTION_LAYERS = {
 
   airbnb: [
     { src: "airbnb-ai-backdrop-wide.png", mural: true, muralPanels: 9, muralWidth: 25.4, muralOverlap: 0.12, depth: -3.85, scale: 5.95, x: 0, y: 0.72, arcStrength: 1, arcRotationStrength: 1, noShadow: true },
-    { src: "airbnb-ai-groundcover-wide.png", ...ARC_GROUND, depth: -2.18, scale: 1.08, x: -0.45, y: -1.82, rotationY: 0.02, arcStrength: 0.2, arcRotationStrength: 0.28, contactShadow: false },
-    { src: "airbnb-long-driveway.png", ...ARC_GROUND, depth: -1.96, scale: 1.48, x: -8.65, y: -1.84, rotationY: 0.16, arcStrength: 0.34, arcRotationStrength: 0.44, contactShadow: false },
+    { src: "airbnb-ai-groundcover-wide.png", ...ARC_GROUND, depth: -2.18, scale: 1.08, x: -0.45, y: -1.82, rotationY: 0.02, arcStrength: 0.2, arcRotationStrength: 0.28, noShadow: true, contactShadow: false, renderOrder: 0, depthWrite: false },
+    { src: "airbnb-long-driveway.png", ...ARC_GROUND, depth: -1.96, scale: 1.48, x: -8.65, y: -1.84, rotationY: 0.16, arcStrength: 0.34, arcRotationStrength: 0.44, contactShadow: false, renderOrder: 2, depthWrite: false },
 
     { src: "airbnb-back.png", ...ARC_HOUSE, depth: -1.32, scale: 4.95, x: 5.0, y: 0.0, rotationY: -0.24 },
     { src: "airbnb-front.png", ...ARC_HOUSE, depth: -0.62, scale: 5.35, x: -6.95, y: 0.03, rotationY: 0.24 },
@@ -117,9 +117,9 @@ const RAW_SECTION_LAYERS = {
     { src: "airbnb-ai-house-grounding.png", ...ARC_HOUSE, depth: -1.2, scale: 0.62, x: 5.05, y: -1.82, rotationY: -0.24, arcStrength: 0.25, arcRotationStrength: 0.72, contactShadow: false, renderOrder: 1, depthWrite: false },
     { src: "airbnb-ai-house-grounding.png", ...ARC_HOUSE, depth: -0.54, scale: 0.66, x: -6.95, y: -1.82, rotationY: 0.24, arcStrength: 0.25, arcRotationStrength: 0.72, contactShadow: false, renderOrder: 1, depthWrite: false },
 
-    { src: "airbnb-ai-pond-right.png", ...ARC_GROUND, depth: -0.5, scale: 1.55, x: 6.45, y: -1.92, rotationY: -0.12, arcStrength: 0.24, arcRotationStrength: 0.34, contactShadowOpacity: 0.03 },
+    { src: "airbnb-ai-pond-right.png", ...ARC_GROUND, depth: -0.5, scale: 1.55, x: 6.45, y: -1.92, rotationY: -0.12, arcStrength: 0.24, arcRotationStrength: 0.34, contactShadowOpacity: 0.03, renderOrder: 2, depthWrite: false },
 
-    { src: "airbnb-ai-yard-detail-1.png", ...ARC_GROUND, depth: -0.46, scale: 0.52, x: -7.35, y: -1.75, rotationY: 0.14, contactShadowOpacity: 0.04 },
+    { src: "airbnb-ai-yard-detail-1.png", ...ARC_GROUND, depth: -0.46, scale: 0.52, x: -7.35, y: -1.75, rotationY: 0.14, contactShadowOpacity: 0.04, renderOrder: 2, depthWrite: false },
 
     { src: "person-guest-ali.png", depth: 0.2, scale: AIRBNB_GUEST_SCALE, x: -6.16, y: AIRBNB_GUEST_Y },
     { src: "person-guest-moustafa.png", depth: 0.28, scale: AIRBNB_GUEST_SCALE, x: -4.72, y: AIRBNB_GUEST_Y },
@@ -133,46 +133,23 @@ const RAW_SECTION_LAYERS = {
   ],
 
   activities: [
-    { src: "activities-summer-field-strip.png", depth: -3.25, scale: 3.0, x: 0, y: -0.92 },
-    {
-      src: "activities-wall-bunting-notes.png",
-      depth: -2.85,
-      scale: 1.35,
-      x: 0.2,
-      y: 1.62,
-      contactShadow: false,
-    },
-    { src: "activities-shoreline-gear.png", ...ARC_GROUND, depth: -1.72, scale: 2.7, x: -2.7, y: -1.12, rotationY: 0.04 },
-    { src: "activities-fireplace.png", ...ARC_GROUND, depth: -1.04, scale: 2.5, x: 6.4, y: -0.82, rotationY: -0.22 },
-    { src: "activities-brisket-games.png", ...ARC_PROP, depth: -0.58, scale: 3.55, x: 0.75, y: -0.55, rotationY: -0.04 },
-    { src: "activities-reservoir-boat.png", ...ARC_EDGE_PROP, depth: 0.48, scale: 3.22, x: -7.85, y: -0.92, rotationY: 0.28 },
-    { src: "activities-edge-games-props.png", ...ARC_EDGE_PROP, depth: 0.7, scale: 1.9, x: 8.35, y: -1.08, rotationY: -0.24 },
+    { src: "activities-ai-backdrop-wide.png", mural: true, muralPanels: 9, muralWidth: 25.4, muralOverlap: 0.12, depth: -3.85, scale: 5.95, x: 0, y: 0.72, arcStrength: 1, arcRotationStrength: 1, noShadow: true },
+    { src: "activities-summer-field-strip.png", ...ARC_GROUND, depth: -2.36, scale: 1.72, x: -0.2, y: -1.52, rotationY: 0.02, arcStrength: 0.22, arcRotationStrength: 0.3, noShadow: true, contactShadow: false },
+    { src: "activities-wall-bunting-notes.png", ...ARC_BACKDROP, depth: -2.86, scale: 1.04, x: 0.1, y: 1.9, rotationY: 0.02, contactShadow: false },
+    { src: "activities-shoreline-gear.png", ...ARC_GROUND, depth: -1.58, scale: 2.05, x: -4.7, y: -1.34, rotationY: 0.12 },
+    { src: "activities-fireplace.png", ...ARC_GROUND, depth: -1.08, scale: 2.28, x: 6.75, y: -1.0, rotationY: -0.22 },
+    { src: "activities-brisket-games.png", ...ARC_PROP, depth: -0.58, scale: 2.98, x: 0.65, y: -0.9, rotationY: -0.04 },
+    { src: "activities-reservoir-boat.png", ...ARC_EDGE_PROP, depth: 0.38, scale: 2.82, x: -8.05, y: -1.12, rotationY: 0.28 },
+    { src: "activities-edge-games-props.png", ...ARC_EDGE_PROP, depth: 0.66, scale: 1.55, x: 8.65, y: -1.3, rotationY: -0.24 },
+    { src: "activities-ai-foreground-fill.png", ...ARC_GROUND, depth: 0.98, scale: 2.36, x: -0.15, y: -0.94, rotationY: 0.02, noShadow: true, contactShadow: false, renderOrder: 3, depthWrite: false },
   ],
 
   packing: [
-    {
-      src: "packing-wall-hanging-tags.png",
-      depth: -3.12,
-      scale: 1.82,
-      x: 0.05,
-      y: 1.95,
-      contactShadow: false,
-    },
-    {
-      src: "packing-wall-shelf-gear.png",
-      depth: -2.7,
-      scale: 2.34,
-      x: -5.65,
-      y: 0.92,
-      rotationY: 0.15,
-      contactShadow: false,
-    },
-    { src: "packing-night-weekend-gear.png", ...ARC_GROUND, depth: -2.02, scale: 2.5, x: 8.25, y: -0.72, rotationY: -0.24 },
-    { src: "packing-boat-gear.png", ...ARC_GROUND, depth: -1.08, scale: 2.35, x: -8.0, y: -0.82, rotationY: 0.24 },
-    { src: "packing-field-gear.png", ...ARC_PROP, depth: -0.72, scale: 2.1, x: 3.2, y: -0.9, rotationY: -0.08 },
-    { src: "packing-duffel-checklist.png", ...ARC_PROP, depth: 0.48, scale: 2.58, x: -0.78, y: -1.03, rotationY: 0.04 },
-    { src: "packing-side-gear-cluster.png", ...ARC_EDGE_PROP, depth: 0.88, scale: 1.55, x: -5.85, y: -1.22, rotationY: 0.22 },
-    { src: "packing-camp-night-cluster.png", ...ARC_EDGE_PROP, depth: 0.96, scale: 1.65, x: 5.75, y: -1.18, rotationY: -0.18 },
+    { src: "packing-ai-backdrop-wide.png", mural: true, muralPanels: 9, muralWidth: 25.4, muralOverlap: 0.12, depth: -3.85, scale: 5.95, x: 0, y: 0.72, arcStrength: 1, arcRotationStrength: 1, noShadow: true },
+    { src: "packing-ai-basics-cluster.png", ...ARC_EDGE_PROP, depth: -0.96, scale: 1.5, x: -7.15, y: -1.34, rotationY: 0.2, renderOrder: 2, depthWrite: false },
+    { src: "packing-ai-boat-cluster.png", ...ARC_PROP, depth: -0.74, scale: 1.55, x: -2.65, y: -1.34, rotationY: 0.06, renderOrder: 2, depthWrite: false },
+    { src: "packing-ai-field-cluster.png", ...ARC_PROP, depth: -0.68, scale: 1.48, x: 2.05, y: -1.38, rotationY: -0.05, renderOrder: 2, depthWrite: false },
+    { src: "packing-ai-night-cluster.png", ...ARC_EDGE_PROP, depth: -0.9, scale: 1.55, x: 6.95, y: -1.32, rotationY: -0.2, renderOrder: 2, depthWrite: false },
   ],
 };
 
