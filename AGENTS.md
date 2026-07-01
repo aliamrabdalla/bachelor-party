@@ -112,6 +112,9 @@ No automated tests. Verify visually:
   mismatched tilts read as broken collage work.
 - Crop wedding photos conservatively so heads/faces are not cut off. Prefer
   contained or face-safe crops over cover crops for small landscape frames.
+- Bride & Groom murals should stay calm and low-density. If the deterministic
+  calendar layer is used, do not include any calendar, date-card, or blank
+  calendar placeholder in the generated background mural.
 - The wedding calendar must remain legible even when zoomed in: make the card and
   numbers large enough, keep all dates inside the card borders, and keep the
   wedding/bachelor-weekend highlights readable.
@@ -137,11 +140,17 @@ No automated tests. Verify visually:
 - Mural backgrounds must stay inside their section wedge. Size mural width
   from the section arc budget so the artwork reaches the seams without bleeding
   into adjacent sections.
+- Generated mural art must match the displayed mural ratio before wiring it
+  into a curved wall. Do not stretch square or poster-like images into wide
+  murals; regenerate wide art or adjust `muralWidth`/`scale` instead.
 - Airbnb ground nature should be low grass, shrubs, rocks, and believable yard
   detail. Do not use tiny forest clusters or toy-sized ponds in the foreground.
 - House and large structure bases must be visually grounded. Keep tall flora
   from appearing under walls/decks, and add low contact shadows or foundation
   strips where a flat house cutout would otherwise look suspended.
+- Airbnb pond layers must stay out from under house/grill artwork: place them
+  in a clear side-yard zone, behind house planes in depth, and high enough that
+  floor/base layers do not slice the water.
 - Airbnb pond assets should be large enough to read as intentional landscape
   features, placed to one side, and nearby props/yard details should be shifted
   so nothing appears to sit inside the water.
@@ -157,6 +166,9 @@ No automated tests. Verify visually:
   and balanced foreground fill before showing the user.
 - Section backgrounds should be wide murals or section-filling compositions, not
   centered stickers with visible rectangular edges or empty side wall space.
+- Wall banners, posters, whiteboards, and checklist props must contain visible
+  themed imagery or deterministic readable text. Remove or replace anything
+  that reads as blank paper, empty cards, or tiny unreadable AI-generated lists.
 - Major activity/packing clusters should occupy clear zones. Do not stack several
   hero props in the same center area unless the overlap is intentional and clean.
 - Foreground filler should stay low, evenly spaced, and proportional. It should
@@ -170,9 +182,17 @@ No automated tests. Verify visually:
 - Broad ground/base layers should draw behind scene props and usually use
   `depthWrite: false` plus a low `renderOrder`; otherwise transparent grass or
   floor bases can cut off driveways, ponds, and small foreground assets.
+- When a floor/base layer intersects another prop, fix the `y`, `depth`, and
+  `renderOrder` or remove the filler. Ponds, flowers, driveways, and house
+  foundations should never be sliced by transparent ground strips.
 - The Get Ready section should read as organized packing prep: wall hooks/shelves
   above, floor gear below, and clear groupings for boat, field-day, night, and
   weekend basics.
+- Packing wall murals should be calm, low-density room backdrops with one clear
+  central packing-plan or prep-board focal point when the wall feels empty. Do
+  not show hanging gear, shelf clutter, consoles, or duplicate physical packing
+  items in the wall mural. Avoid abstract floor arrows, confetti, or labels;
+  ground detail should come from clear, proportional scene props.
 - Packing assets should be grouped by activity/day and generated as a cohesive
   set when the section is being redesigned. Avoid duplicate items across assets;
   if entertainment gear is requested, include only one Xbox setup and one
