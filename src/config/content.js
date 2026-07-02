@@ -4,7 +4,7 @@ export const PARTY_START = "2026-07-31T15:00:00-04:00";
 
 export const SITE = {
   title: "Youssef's Bachelor Weekend",
-  subtitle: "Scroll to wander the weekend",
+  subtitle: "A four-stop agenda for the weekend",
 };
 
 export const SECTIONS = [
@@ -17,13 +17,10 @@ export const SECTIONS = [
     },
     panel: {
       heading: "Youssef & Gabi",
-      body: "The weekend starts with the reason everyone is gathering: celebrating Youssef, Gabi, and the next chapter. The wall calendar marks the August 7 wedding date with the July 31-August 2 bachelor weekend highlighted right before it.",
+      body: "Before the weekend gets going, a quick nod to why everyone is here: Youssef is getting married. The wedding is August 7, so this is the last weekend before the official handoff to married life.",
       facts: [
-        "Groom: Youssef",
-        "Bride: Gabi",
-        "Wedding date: August 7, 2026",
-        "Bachelor weekend: July 31-August 2, 2026",
-        "Memory cards: how they met, favorite stories, and advice for married life",
+        "Wedding: Friday, August 7, 2026",
+        "Bachelor weekend: Friday, July 31-Sunday, August 2, 2026",
       ],
     },
   },
@@ -35,20 +32,20 @@ export const SECTIONS = [
       floor: "#587a42",
     },
     panel: {
-      heading: "Home Base in Davison",
-      body: "Check in July 31 at 3:00 PM and settle into the Davison home base through August 2 at 10:00 AM. The house is the anchor for the weekend: a place to land, fish, reset, and get everyone moving together.",
+      heading: "The Davison Airbnb",
+      body: "Check in Friday afternoon and stay through Sunday morning. This is where everyone meets up, sleeps, fishes, grills, and resets between plans.",
       facts: [
         "Address: 4353 North Irish Road, Davison, MI 48423",
-        "Check-in: July 31, 2026 at 3:00 PM",
-        "Checkout: August 2, 2026 at 10:00 AM",
-        "Drive: about one hour from Birmingham / Southfield",
+        "Check-in: Friday, July 31, 2026 at 3:00 PM",
+        "Checkout: Sunday, August 2, 2026 at 10:00 AM",
+        "Drive: about 1 hour from Birmingham / Southfield",
         "Quiet hours: 11:00 PM-7:00 AM",
         "Pond: catch-and-release fishing; poles provided; swim at your own risk",
         "Before checkout: towels to laundry, trash to the garage bin",
       ],
       actions: [
         {
-          label: "Add Yourself to the Airbnb",
+          label: "Open Airbnb Invite",
           href: "https://www.airbnb.com/l/TSnV4z6P?s=67&unique_share_id=38b2c422-b911-47e9-a68d-60705937b4db",
         },
       ],
@@ -63,13 +60,12 @@ export const SECTIONS = [
     },
     panel: {
       heading: "Boat, Brisket, Games, Fire",
-      body: "Saturday is built around an outdoors-heavy bachelor-party day: Holloway Reservoir in the morning, a three-place brisket tasting, lawn-game field day, and a relaxed fireplace hangout at night.",
+      body: "Saturday is the main day: Holloway Reservoir in the morning, three brisket options, field day games, and a fire at night.",
       facts: [
-        "Boat morning: Holloway Reservoir",
-        "Food: three-place brisket tasting",
-        "Competition: seven-person ranking and judging",
-        "Field day: Spikeball, cones, volleyball, and open grass",
-        "Night: fireplace hangout with chairs and string lights",
+        "Morning: Holloway Reservoir",
+        "Food: three brisket options",
+        "Field day: Spikeball, volleyball, cones, and other games",
+        "Night: fire at the Airbnb",
       ],
     },
   },
@@ -81,14 +77,14 @@ export const SECTIONS = [
       floor: "#4b6f41",
     },
     panel: {
-      heading: "Pack by Moment",
-      body: "Use this as the practical packing list: Friday arrival basics first, Saturday boat gear next, field-day clothes after that, then night-fire and entertainment items so nothing gets duplicated or forgotten.",
+      heading: "Packing List",
+      body: "Pack for the actual weekend: Friday arrival, the boat, field day, night by the fire, and game night.",
       facts: [
         "Friday basics: duffel, casual clothes, sleepwear, toiletries, phone charger, wallet, medications",
         "Boat morning: swimsuit or wet clothes, towel, sunscreen, sunglasses, hat, water bottle, sandals or water shoes",
         "Field day: athletic shirt and shorts, sneakers, socks, bug spray, small day bag",
         "Night and fire: hoodie, light jacket, comfortable pants, blanket, optional camp chair",
-        "Entertainment: one Xbox setup and one Nintendo Switch for downtime at the house",
+        "Game night: board games and gaming",
       ],
     },
   },

@@ -23,7 +23,7 @@ export default function LoadingScreen() {
   if (gone) return null;
 
   return (
-    <div className={`loading ${leaving ? "loading--leaving" : ""}`} style={{ filter: "url(#torn)" }}>
+    <div className={`loading ${leaving ? "loading--leaving" : ""}`}>
       <div className="loading-inner">
         <h1 className="loading-title">{SITE.title}</h1>
         <p className="loading-subtitle">{SITE.subtitle}</p>
@@ -38,18 +38,8 @@ export default function LoadingScreen() {
           </button>
         )}
 
-        <p className="loading-hint">~ scroll / swipe to wander ~</p>
+        <p className="loading-hint">Scroll or swipe to explore</p>
       </div>
-
-      {/* Torn-paper edge filter (borrowed technique from the reference). */}
-      <svg width="0" height="0" style={{ position: "absolute" }}>
-        <defs>
-          <filter id="torn" x="-5%" y="-5%" width="110%" height="110%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="3" seed="7" />
-            <feDisplacementMap in="SourceGraphic" scale="14" xChannelSelector="R" yChannelSelector="G" />
-          </filter>
-        </defs>
-      </svg>
     </div>
   );
 }

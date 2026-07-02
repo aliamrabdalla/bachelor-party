@@ -23,7 +23,7 @@ export default function Countdown() {
   }, []);
 
   if (!remaining) {
-    return <div className="countdown countdown--live">It's happening. 🎉</div>;
+    return <div className="countdown countdown--live">It's happening.</div>;
   }
 
   const units = [

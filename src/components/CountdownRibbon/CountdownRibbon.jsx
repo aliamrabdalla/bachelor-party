@@ -78,7 +78,7 @@ export default function CountdownRibbon() {
             ))}
           </span>
         ) : (
-          <span className="countdown-ribbon-live">It is happening.</span>
+          <span className="countdown-ribbon-live">It's happening.</span>
         )}
       </div>
     </div>
